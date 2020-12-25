@@ -52,16 +52,6 @@ app.post(`/users/register`, asyncHandler(users.register))
 
 app.post(`/users/login`, asyncHandler(users.login))
 
-app.post(`/items/create`, asyncHandler(items.create))
-
-app.put(`/items/update`, asyncHandler(items.update))
-
-app.get(`/items/id`, asyncHandler(items.get))
-
-app.get(`/items`, asyncHandler(items.getAll))
-
-app.get(`/items/remove`, asyncHandler(items.remove))
-
 app.get(`/test/`, (req, res) => {
   res.status(200).send('Request received')
 })
@@ -71,6 +61,16 @@ app.get(`/test/`, (req, res) => {
  */
 
 app.post(`/user`, passport.authenticate('jwt', { session: false }), asyncHandler(users.get))
+
+app.post(`/items/create`, passport.authenticate('jwt', { session: false }), asyncHandler(items.create))
+
+app.put(`/items/update`, passport.authenticate('jwt', { session: false }), asyncHandler(items.update))
+
+app.get(`/items/id`, passport.authenticate('jwt', { session: false }), asyncHandler(items.get))
+
+app.get(`/items`, passport.authenticate('jwt', { session: false }), asyncHandler(items.getAll))
+
+app.get(`/items/remove`, passport.authenticate('jwt', { session: false }), asyncHandler(items.remove))
 
 /**
  * Routes - Catch-All
