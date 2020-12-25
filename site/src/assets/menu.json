@@ -1,0 +1,490 @@
+[
+  {
+    "id": "1",
+    "name": "veggie patty",
+    "description": "",
+    "type": "addon",
+    "price": 2,
+    "active": 1,
+    "order": 0
+  },{
+    "id": "2",
+    "name": "beef patty",
+    "description": "",
+    "type": "addon",
+    "price": 3,
+    "active": 1,
+    "order": 1
+  },{
+    "id": "3",
+    "name": "bacon",
+    "description": "",
+    "type": "addon",
+    "price": 2,
+    "active": 1,
+    "order": 2
+  },{
+    "id": "4",
+    "name": "caramelized onion",
+    "description": "",
+    "type": "addon",
+    "price": 1,
+    "active": 1,
+    "order": 3
+  },{
+    "id": "5",
+    "name": "cheese",
+    "description": "",
+    "type": "addon",
+    "price": 1,
+    "active": 1,
+    "order": 4
+  },{
+    "id": "6",
+    "name": "Tavern Burger",
+    "description": "1/4 lb. beef patty, Special sauce, American cheese, shredded lettuce, pickle, milk bun",
+    "type": "sandwich",
+    "price": 8,
+    "active": 1,
+    "order": 0
+  },{
+    "id": "7",
+    "name": "Double, Double",
+    "description": "Double meat, double cheese, special sauce, shredded lettuce, pickle, milk bun",
+    "type": "sandwich",
+    "price": 11,
+    "active": 1,
+    "order": 1
+  },{
+    "id": "8",
+    "name": "Mushroom Swiss",
+    "description": "1/4 lb. beef patty, garlic aioli, Swiss cheese, bacon, sautéed mushrooms, pickles, shredded lettuce, milk bun",
+    "type": "sandwich",
+    "price": 11,
+    "active": 1,
+    "order": 2
+  },{
+    "id": "9",
+    "name": "Western",
+    "description": "1/4 lb. beef patty, BBQ sauce, mayo, American cheese, bacon, onion ring, pickles, shredded lettuce, milk bun",
+    "type": "sandwich",
+    "price": 11,
+    "active": 1,
+    "order": 3
+  },{
+    "id": "10",
+    "name": "Spicy Guacamole",
+    "description": "1/4 lb. beef patty, mayo, pepper jack cheese, bacon, guacamole, pickled onions, shredded lettuce, milk bun",
+    "type": "sandwich",
+    "price": 12,
+    "active": 1,
+    "order": 4
+  },{
+    "id": "11",
+    "name": "Fish Sandwich",
+    "description": "Panko breaded and fried Blue North Alaskan Cod, tartar sauce, shredded lettuce, pickle, milk bun",
+    "type": "sandwich",
+    "price": 11,
+    "active": 1,
+    "order": 5
+  },{
+    "id": "12",
+    "name": "Vegan Tavern Burger",
+    "description": "House made vegan patty, vegan special sauce, vegan cheese, shredded lettuce, pickle, vegan bun",
+    "type": "sandwich",
+    "price": 10,
+    "active": 1,
+    "order": 6
+  },{
+    "id": "13",
+    "name": "Garden Salad",
+    "description": "Farm greens, cucumber, red onion, sweet peppers, radish, cherry tomato (Ranch, Bleu Cheese, Vinaigrette or Green Goddess)",
+    "type": "salad",
+    "price": 6,
+    "active": 1,
+    "order": 0
+  },{
+    "id": "14",
+    "name": "Wedge Salad",
+    "description": "Bleu Cheese, bacon, pickled celery, onion ring",
+    "type": "salad",
+    "price": 6,
+    "active": 1,
+    "order": 0
+  },{
+    "id": "15",
+    "name": "Fry Sauce",
+    "description": "",
+    "type": "sauce",
+    "active": 1,
+    "order": 0
+  },{
+    "id": "16",
+    "name": "Curry Ketchup",
+    "description": "",
+    "type": "sauce",
+    "active": 1,
+    "order": 1
+  },{
+    "id": "17",
+    "name": "Ranch",
+    "description": "",
+    "type": "sauce",
+    "active": 1,
+    "order": 2
+  },{
+    "id": "18",
+    "name": "Honey Mustard",
+    "description": "",
+    "type": "sauce",
+    "active": 1,
+    "order": 3
+  },{
+    "id": "19",
+    "name": "Tartar Sauce",
+    "description": "",
+    "type": "sauce",
+    "active": 1,
+    "order": 4
+  },{
+    "id": "20",
+    "name": "BBQ Sauce",
+    "description": "",
+    "type": "sauce",
+    "active": 1,
+    "order": 5
+  },{
+    "id": "21",
+    "name": "Garlic Aioli",
+    "description": "",
+    "type": "sauce",
+    "active": 1,
+    "order": 6
+  },{
+    "id": "22",
+    "name": "Bleu Cheese",
+    "description": "",
+    "type": "sauce",
+    "active": 1,
+    "order": 7
+  },{
+    "id": "23",
+    "name": "Basket of Fries",
+    "description": "Hand-cut",
+    "type": "side",
+    "price": 3,
+    "active": 1,
+    "order": 1
+  },{
+    "id": "24",
+    "name": "Basket of Onion Rings",
+    "description": "Hand-cut, beer battered",
+    "type": "side",
+    "price": 4,
+    "active": 1,
+    "order": 1
+  },{
+    "id": "25",
+    "name": "Paper Tiger",
+    "description": "Vodka, Becherovka, pamplemousse, lime cordial, lime juice, salt, grapefruit peel",
+    "price": 10,
+    "active": 1,
+    "order": 0,
+    "type": "house-drink"
+  },{
+    "id": "26",
+    "name": "Nashville",
+    "description": "Rye, Cynar, Fernet, bitters, orange peel",
+    "price": 10,
+    "active": 1,
+    "order": 1,
+    "type": "house-drink"
+  },{
+    "id": "27",
+    "name": "Lost Generation",
+    "description": "Bonded bourbon, apple brandy, grenadine, raspberry, lemon juice, demerara, bitters, orange oil",
+    "price": 11,
+    "active": 1,
+    "order": 2,
+    "type": "house-drink"
+  },{
+    "id": "28",
+    "name": "SMFH",
+    "description": "Rye, overproof rum, Montenegro, PX Sherry, bitter, orange oil",
+    "price": 12,
+    "active": 1,
+    "order": 3,
+    "type": "house-drink"
+  },{
+    "id": "29",
+    "name": "Lil' Miss Sunshine",
+    "description": "House rum blend, pineapple, lime juice, demerara, bitters",
+    "price": 12,
+    "active": 1,
+    "order": 4,
+    "type": "house-drink"
+  },{
+    "id": "30",
+    "name": "Sabina",
+    "description": "Mezcal, Campari, Suze, lime cordial, lime juice, grapefruit peel",
+    "price": 12,
+    "active": 1,
+    "order": 5,
+    "type": "house-drink"
+  },{
+    "id": "31",
+    "name": "Broken Aesop",
+    "description": "Mezcal, Suze, pamplemousse, bitters, lime oil, grapefruit peel",
+    "price": 12,
+    "active": 1,
+    "order": 6,
+    "type": "house-drink"
+  },{
+    "id": "32",
+    "name": "Old Fashioned",
+    "description": "Bonded bourbon, demerara, bitters, orange peel",
+    "price": 8,
+    "active": 1,
+    "order": 7,
+    "type": "classic-drink"
+  },{
+    "id": "33",
+    "name": "Little Italy",
+    "description": "Rye, Cynar, sweet vermouth, Amarena cherry",
+    "price": 9,
+    "active": 1,
+    "order": 8,
+    "type": "classic-drink"
+  },{
+    "id": "34",
+    "name": "Daiquiri",
+    "description": "Rum, lime juice, demerara",
+    "price": 9,
+    "active": 1,
+    "order": 9,
+    "type": "classic-drink"
+  },{
+    "id": "35",
+    "name": "Margarita",
+    "description": "Tequila, orange liqueur, lime, demerara",
+    "price": 9,
+    "active": 1,
+    "order": 10,
+    "type": "classic-drink"
+  },{
+    "id": "36",
+    "name": "Negroni",
+    "description": "Gin, Campari, sweet vermouth, orange peel",
+    "price": 9,
+    "active": 1,
+    "order": 11,
+    "type": "classic-drink"
+  },{
+    "id": "37",
+    "name": "Gimlet",
+    "description": "Gin, lime cordial, lime juice, orange flower water",
+    "price": 9,
+    "active": 1,
+    "order": 12,
+    "type": "classic-drink"
+  },{
+    "id": "38",
+    "name": "20th Century",
+    "description": "Gin, Cocchi Americano, creme de cacao, lemon juice, lemon peel",
+    "price": 10,
+    "active": 1,
+    "order": 13,
+    "type": "classic-drink"
+  },{
+    "id": "39",
+    "name": "Hot Toddy",
+    "description": "Bonded bourbon, honey syrup, lemon juice, cinnamon",
+    "price": 8,
+    "active": 1,
+    "order": 14,
+    "type": "hot-drink"
+  },{
+    "id": "40",
+    "name": "Irish Coffee",
+    "description": "Irish whiskey, coffee, demerara, whipped cream",
+    "price": 9,
+    "active": 1,
+    "order": 15,
+    "type": "hot-drink"
+  },{
+    "id": "41",
+    "name": "Coffee Nudge",
+    "description": "Cognac, rums, Kahlua, creme de cacao, coffee, whipped cream, nutmeg, cinnamon",
+    "price": 10,
+    "active": 1,
+    "order": 16,
+    "type": "hot-drink"
+  },{
+    "id": "42",
+    "name": "Hot Buttered Rum",
+    "description": "House butter mix, rums, nutmeg, cinnamon",
+    "price": 12,
+    "active": 1,
+    "order": 17,
+    "type": "hot-drink"
+  },{
+    "id": "43",
+    "name": "Czechvar",
+    "description": "European Lager",
+    "type": "draft",
+    "price": 5,
+    "active": 1,
+    "order": 0
+  },{
+    "id": "44",
+    "name": "Wayfinder",
+    "description": "Export Lager",
+    "type": "draft",
+    "price": 6,
+    "active": 1,
+    "order": 1
+  },{
+    "id": "45",
+    "name": "Cloudburst",
+    "description": "Stout",
+    "type": "draft",
+    "price": 6,
+    "active": 1,
+    "order": 2
+  },{
+    "id": "46",
+    "name": "Holy Mountain",
+    "description": "Black Beer",
+    "type": "draft",
+    "price": 6,
+    "active": 0,
+    "order": 3
+  },{
+    "id": "47",
+    "name": "Ruse",
+    "description": "IPA",
+    "type": "draft",
+    "price": 7,
+    "active": 1,
+    "order": 4
+  },{
+    "id": "48",
+    "name": "Cloudburst",
+    "description": "Hazy IIPA",
+    "type": "draft",
+    "price": 7,
+    "active": 1,
+    "order": 5
+  },{
+    "id": "49",
+    "name": "Wayfinder",
+    "description": "Doppelbock",
+    "type": "draft",
+    "price": 7,
+    "active": 1,
+    "order": 6
+  },{
+    "id": "50",
+    "name": "Baird & Dewar",
+    "description": "Reserve Cider",
+    "type": "draft",
+    "price": 8,
+    "active": 1,
+    "order": 7
+  },{
+    "id": "51",
+    "name": "Landmass",
+    "description": "Pinot Blanc",
+    "type": "wine",
+    "price": 8,
+    "active": 1,
+    "order": 0
+  },{
+    "id": "52",
+    "name": "Landmass",
+    "description": "Pinot Noir",
+    "type": "wine",
+    "price": 8,
+    "active": 1,
+    "order": 1
+  },{
+    "id": "53",
+    "name": "Kokanee",
+    "description": "",
+    "type": "tallboy",
+    "price": 3,
+    "active": 1,
+    "order": 0
+  },{
+    "id": "54",
+    "name": "Rainier",
+    "description": "",
+    "type": "tallboy",
+    "price": 3,
+    "active": 1,
+    "order": 1
+  }, {
+    "id": "55",
+    "name": "Tecate",
+    "description": "",
+    "type": "tallboy",
+    "price": 4,
+    "active": 1,
+    "order": 2
+  },{
+    "id": "56",
+    "name": "Coors",
+    "description": "Banquet",
+    "type": "tallboy",
+    "price": 4,
+    "active": 1,
+    "order": 3
+  },{
+    "id": "57",
+    "name": "Modelo",
+    "description": "Especial",
+    "type": "tallboy",
+    "price": 5,
+    "active": 1,
+    "order": 4
+  },{
+    "id": "58",
+    "name": "Aval",
+    "description": "Rosé",
+    "type": "cider",
+    "price": 6,
+    "active": 1,
+    "order": 5
+  },{
+    "id": "59",
+    "name": "Son of Man",
+    "description": "Sagardo",
+    "type": "cider",
+    "price": 7,
+    "active": 1,
+    "order": 6
+  },{
+    "id": "60",
+    "name": "Swift",
+    "description": "Pomegranate",
+    "type": "cider",
+    "price": 7,
+    "active": 1,
+    "order": 7
+  },{
+    "id": "61",
+    "name": "Swift",
+    "description": "Honey Crisp",
+    "type": "cider",
+    "price": 7,
+    "active": 1,
+    "order": 8
+  },{
+    "id": "62",
+    "name": "Craft",
+    "description": "Always rotating, ask your server",
+    "type": "tallboy",
+    "active": 1,
+    "order": 9
+  }
+]
