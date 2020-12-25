@@ -1,5 +1,6 @@
 component: express
 name: api
+app: tulip-shop-tavern
 
 inputs:
   # Express application source code.
