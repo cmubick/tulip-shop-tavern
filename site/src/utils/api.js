@@ -60,7 +60,6 @@ export const requestApi = async (
   // Default options are marked with *
   const response = await fetch(url, {
     method: method.toUpperCase(),
-    mode: 'no-cors',
     cache: 'no-cache',
     headers,
     body: data ? JSON.stringify(data) : null
