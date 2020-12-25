@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const passport = require('passport')
 const {
-  users
+  users, items
 } = require('./controllers')
 
 /**
@@ -62,15 +62,15 @@ app.get(`/test/`, (req, res) => {
 
 app.post(`/user`, passport.authenticate('jwt', { session: false }), asyncHandler(users.get))
 
-// app.post(`/items/create`, passport.authenticate('jwt', { session: false }), asyncHandler(items.create))
+app.post(`/items/create`, passport.authenticate('jwt', { session: false }), asyncHandler(items.create))
 
-// app.put(`/items/update`, passport.authenticate('jwt', { session: false }), asyncHandler(items.update))
+app.put(`/items/update`, passport.authenticate('jwt', { session: false }), asyncHandler(items.update))
 
-// app.get(`/items/id`, passport.authenticate('jwt', { session: false }), asyncHandler(items.get))
+app.get(`/items/id`, passport.authenticate('jwt', { session: false }), asyncHandler(items.get))
 
-// app.get(`/items`, passport.authenticate('jwt', { session: false }), asyncHandler(items.getAll))
+app.get(`/items`, passport.authenticate('jwt', { session: false }), asyncHandler(items.getAll))
 
-// app.get(`/items/remove`, passport.authenticate('jwt', { session: false }), asyncHandler(items.remove))
+app.get(`/items/remove`, passport.authenticate('jwt', { session: false }), asyncHandler(items.remove))
 
 /**
  * Routes - Catch-All
