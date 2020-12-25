@@ -50,13 +50,17 @@ export const requestApi = async (
   // Set headers
   headers = Object.assign(
     { 'Content-Type': 'application/json' },
+    { 'Access-Control-Allow-Methods': '*' },
+    { 'Access-Control-Allow-Headers': '*' },
+    { 'Access-Control-Allow-Origin': '*' },
+    { 'x-powered-by': 'serverless-express' },
     headers
   )
 
   // Default options are marked with *
   const response = await fetch(url, {
     method: method.toUpperCase(),
-    mode: 'cors',
+    mode: 'no-cors',
     cache: 'no-cache',
     headers,
     body: data ? JSON.stringify(data) : null

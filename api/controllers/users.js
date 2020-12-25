@@ -32,10 +32,7 @@ const register = async (req, res, next) => {
     expiresIn: 604800 // 1 week
   })
 
-  res.json({ message: 'Authentication successful', token, headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Credentials': true,
-  } })
+  res.json({ message: 'Authentication successful', token })
 }
 
 /**
@@ -63,10 +60,7 @@ const login = async (req, res, next) => {
     expiresIn: 604800 // 1 week
   })
 
-  res.json({ message: 'Authentication successful', token, headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Credentials': true,
-  } })
+  res.json({ message: 'Authentication successful', token })
 }
 
 /**
@@ -77,10 +71,7 @@ const login = async (req, res, next) => {
  */
 const get = async (req, res, next) => {
   const user = users.convertToPublicFormat(req.user)
-  res.json({ user, headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Credentials': true,
-  } })
+  res.json({ user })
 }
 
 module.exports = {
