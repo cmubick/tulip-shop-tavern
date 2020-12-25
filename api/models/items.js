@@ -13,9 +13,9 @@ const dynamodb = new AWS.DynamoDB.DocumentClient({
  * Create item
  * @param {string} item.name Item name
  * @param {string} item.description Item description
- * @param {number} item.price Item price
- * @param {number} item.order Item order
- * @param {boolean} item.active Item active
+ * @param {string} item.price Item price
+ * @param {string} item.order Item order
+ * @param {string} item.active Item active
  * @param {string} item.type Item type
  */
 const create = async(item = {}) => {
@@ -59,9 +59,9 @@ const create = async(item = {}) => {
  * @param {string} item.id Item id
  * @param {string} item.name Item name
  * @param {string} item.description Item description
- * @param {number} item.price Item price
- * @param {number} item.order Item order
- * @param {boolean} item.active Item active
+ * @param {string} item.price Item price
+ * @param {string} item.order Item order
+ * @param {string} item.active Item active
  * @param {string} item.type Item type
  */
 const update = async(item = {}) => {

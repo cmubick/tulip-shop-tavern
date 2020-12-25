@@ -4,7 +4,7 @@
 
 const StrategyJWT = require('passport-jwt').Strategy
 const ExtractJWT = require('passport-jwt').ExtractJwt
-const { users } = require('../models')
+const { users, items } = require('../models')
 const { comparePassword } = require('../utils')
 
 module.exports = (passport) => {
