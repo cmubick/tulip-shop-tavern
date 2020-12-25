@@ -199,6 +199,25 @@ const getById = async(id) => {
 }
 
 /**
+ * Get all items
+ */
+
+const getAll = async() => {
+
+  // Query
+  const params = {
+    TableName: process.env.db,
+    IndexName: process.env.dbIndex1,
+    KeyConditionExpression: 'sk = :sk',
+    ExpressionAttributeValues: { ':sk': 'item' }
+  }
+  let returnItems = await dynamodb.query(params).promise()
+
+  returnItems = items.Items && items.Items[0] ? items.Items[0] : null
+  return returnItems
+}
+
+/**
  * Convert item record to public format
  * This hides the keys used for the dynamodb's single table design and returns human-readable properties.
  * @param {*} item 
@@ -218,5 +237,6 @@ module.exports = {
   remove,
   getByName,
   getById,
+  getAll,
   convertToPublicFormat,
 }

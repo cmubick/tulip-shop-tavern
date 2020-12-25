@@ -55,14 +55,25 @@ const update = async (req, res, next) => {
 }
 
 /**
- * Get a user
+ * Get an item
  * @param {*} req 
  * @param {*} res 
  * @param {*} next 
  */
 const get = async (req, res, next) => {
-  const user = users.convertToPublicFormat(req.user)
-  res.json({ user })
+  const item = await item.getById(req.body.id)
+  res.json({ item })
+}
+
+/**
+ * Get all items
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+const getAll = async (req, res, next) => {
+  const items = await item.getAll()
+  res.json({ items })
 }
 
 /**
@@ -94,5 +105,6 @@ module.exports = {
   create,
   update,
   get,
+  getAll,
   remove
 }

@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const passport = require('passport')
 const {
-  users
+  users, items
 } = require('./controllers')
 
 /**
@@ -51,6 +51,16 @@ app.options(`*`, (req, res) => {
 app.post(`/users/register`, asyncHandler(users.register))
 
 app.post(`/users/login`, asyncHandler(users.login))
+
+app.post(`/items/create`, asyncHandler(items.create))
+
+app.put(`/items/update`, asyncHandler(items.update))
+
+app.get(`/items/id`, asyncHandler(items.get))
+
+app.get(`/items`, asyncHandler(items.getAll))
+
+app.get(`/items/remove`, asyncHandler(items.remove))
 
 app.get(`/test/`, (req, res) => {
   res.status(200).send('Request received')
