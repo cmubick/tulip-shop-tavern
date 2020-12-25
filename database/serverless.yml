@@ -1,3 +1,4 @@
+app: tulip-shop-tavern
 component: aws-dynamodb
 name: database
 
