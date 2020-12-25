@@ -8,6 +8,7 @@ import {
   
 import Menu from './Menu';
 import Admin from './Admin';
+import Auth from './pages/Auth/Auth'
 
 function App() {
     return (
