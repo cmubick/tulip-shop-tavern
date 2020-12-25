@@ -18,14 +18,14 @@ function App() {
                     <Route path="/admin">
                         <Admin />
                     </Route>
-                    <Route path="/">
-                        <Menu />
-                    </Route>
                     <Route path='/register'>
                         <Auth />
                     </Route>
                     <Route path='/login'>
                         <Auth />
+                    </Route>
+                    <Route path="/">
+                        <Menu />
                     </Route>
                 </Switch>
             </Router>
