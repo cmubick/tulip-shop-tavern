@@ -20,6 +20,12 @@ function App() {
                     <Route path="/">
                         <Menu />
                     </Route>
+                    <Route path='/register'>
+                        <Auth />
+                    </Route>
+                    <Route path='/login'>
+                        <Auth />
+                    </Route>
                 </Switch>
             </Router>
         </div>
