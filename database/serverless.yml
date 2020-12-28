@@ -35,5 +35,4 @@ custom:
   customDomain:
     domainName: tulipshoptavern.chrisubick.io
     basePath: ''
-    stage: ${self:provider.stage}
     createRoute53Record: true
