@@ -235,8 +235,7 @@ const getAll = async() => {
       }
     }
   }
-  dynamodb.scan(params, onScan);
-  return scanResults;
+  return dynamodb.scan(params, onScan);
 }
 
 /**
