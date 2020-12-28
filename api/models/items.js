@@ -205,6 +205,7 @@ const getById = async(id) => {
 const getAll = async() => {
   const params = {
     TableName: process.env.db,
+    IndexName: process.env.dbIndex1,
   };
 
   let scanResults = [];
