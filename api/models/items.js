@@ -219,7 +219,7 @@ const getAll = async() => {
 
   function onScan(err, data) {
     if (err) {
-        console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
+        scanResults.push({"message": "error", "error": err});
     } else {        
         console.log("Scan succeeded.");
         data.Items.forEach(function(itemdata) {
