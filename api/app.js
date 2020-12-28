@@ -66,11 +66,11 @@ app.post(`/items/create`, passport.authenticate('jwt', { session: false }), asyn
 
 app.put(`/items/update`, passport.authenticate('jwt', { session: false }), asyncHandler(items.update))
 
-app.get(`/items/id`, asyncHandler(items.get))
+app.get(`/items/{id}`, asyncHandler(items.get))
 
 app.get(`/items`, asyncHandler(items.getAll))
 
-app.get(`/items/remove`, passport.authenticate('jwt', { session: false }), asyncHandler(items.remove))
+app.post(`/items/remove`, passport.authenticate('jwt', { session: false }), asyncHandler(items.remove))
 
 /**
  * Routes - Catch-All
