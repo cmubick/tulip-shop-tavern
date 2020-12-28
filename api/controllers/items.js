@@ -72,7 +72,7 @@ const get = async (req, res, next) => {
  * @param {*} next 
  */
 const getAll = async (req, res, next) => {
-  const items = await item.getAll()
+  const items = await items.getAll()
   res.json({ items })
 }
 
