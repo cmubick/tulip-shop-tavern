@@ -38,7 +38,7 @@ const create = async (req, res, next) => {
 const update = async (req, res, next) => {
 
   let item
-  try { item = await item.getById(req.body.id) }
+  try { item = await items.getById(req.body.id) }
   catch (error) { return done(error, null) }
 
   if (!item) {
@@ -61,7 +61,7 @@ const update = async (req, res, next) => {
  * @param {*} next 
  */
 const get = async (req, res, next) => {
-  const item = await item.getById(req.body.id)
+  const item = await items.getById(req.body.id)
   res.json({ item })
 }
 
@@ -72,8 +72,8 @@ const get = async (req, res, next) => {
  * @param {*} next 
  */
 const getAll = async (req, res, next) => {
-  const items = await items.getAll()
-  res.json({ items })
+  const returnItems = await items.getAll()
+  res.json({ returnItems })
 }
 
 /**
@@ -85,7 +85,7 @@ const getAll = async (req, res, next) => {
 const remove = async (req, res, next) => {
 
   let item
-  try { item = await item.getById(req.body.id) }
+  try { item = await items.getById(req.body.id) }
   catch (error) { return done(error, null) }
 
   if (!item) {
