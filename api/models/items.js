@@ -213,11 +213,10 @@ const getAll = async() => {
     ExpressionAttributeValues: { ":sk": 'item' }
   };
 
-  dynamodb.scan(params, onScan);
   let count = 0;
   let scanResults = [];
 
-  function onScan(err, data) {
+  async function onScan(err, data) {
     if (err) {
         scanResults.push({"message": "error", "error": err});
     } else {        
@@ -235,6 +234,7 @@ const getAll = async() => {
         }
     }
   }
+  dynamodb.scan(params, await onScan);
   return scanResults;
 }
 
