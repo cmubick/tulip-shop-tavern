@@ -216,25 +216,25 @@ const getAll = async() => {
   let count = 0;
   let scanResults = [];
 
-  async function onScan(err, data) {
+  function onScan(err, data) {
     if (err) {
         scanResults.push({"message": "error", "error": err});
     } else {        
-        console.log("Scan succeeded.");
-        data.Items.forEach(function(itemdata) {
-          itemdata.id = itemdata.sk2;
-          scanResults.push(itemdata);
-          ++count;
-        });
+      scanResults.push({"message": "success"});
+      data.Items.forEach(function(itemdata) {
+        itemdata.id = itemdata.sk2;
+        scanResults.push(itemdata);
+        ++count;
+      });
 
-        if (typeof data.LastEvaluatedKey != "undefined") {
-            console.log("Scanning for more...");
-            params.ExclusiveStartKey = data.LastEvaluatedKey;
-            docClient.scan(params, onScan);
-        }
+      if (typeof data.LastEvaluatedKey != "undefined") {
+        scanResults.push({"message2": "line231"});
+        params.ExclusiveStartKey = data.LastEvaluatedKey;
+        docClient.scan(params, onScan);
+      }
     }
   }
-  dynamodb.scan(params, await onScan);
+  dynamodb.scan(params, onScan);
   return scanResults;
 }
 
