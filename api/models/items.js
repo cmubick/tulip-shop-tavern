@@ -213,7 +213,12 @@ const getAll = async() => {
   }
   let returnItems = await dynamodb.query(params).promise()
 
-  returnItems = items.Items && items.Items[0] ? items.Items : null
+  returnItems = returnItems.Items && returnItems.Items[0] ? returnItems.Items : null
+  if (returnItems) {
+    returnItems.array.forEach(element => {
+      element.id = element.sk2
+    });
+  }
   return returnItems
 }
 
