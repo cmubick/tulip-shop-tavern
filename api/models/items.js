@@ -208,8 +208,8 @@ const getAll = async() => {
   const params = {
     TableName: process.env.db,
     IndexName: process.env.dbIndex1,
-    KeyConditionExpression: 'sk = :sk',
-    ExpressionAttributeValues: { ':sk': 'item' }
+    KeyConditionExpression: 'sk2 = :sk2 and sk = :sk',
+    ExpressionAttributeValues: { ':sk2': id, ':sk': 'item' }
   }
   let returnItems = await dynamodb.query(params).promise()
 
