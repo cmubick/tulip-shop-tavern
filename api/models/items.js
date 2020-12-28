@@ -206,9 +206,9 @@ const getAll = async() => {
   const params = {
     TableName: process.env.db,
     IndexName: process.env.dbIndex1,
-    FilterExpression: 'sk = :sk',
+    FilterExpression: "#sk = :sk",
     ExpressionAttributeNames: {
-      "sk": ":sk",
+        "#sk": "sk",
     },
     ExpressionAttributeValues: { ":sk": 'item' }
   };
