@@ -205,39 +205,17 @@ const getById = async(id) => {
 const getAll = async() => {
   const params = {
     TableName: process.env.db,
-    IndexName: process.env.dbIndex1,
-    FilterExpression: "#sk = :sk",
-    ExpressionAttributeNames: {
-        "#sk": "sk",
-    },
-    ExpressionAttributeValues: { ":sk": 'item' }
   };
 
-  let count = 0;
   let scanResults = [];
+  let items;
+  do {
+      items =  await documentClient.scan(params).promise();
+      items.Items.forEach((item) => scanResults.push(item));
+      params.ExclusiveStartKey  = items.LastEvaluatedKey;
+  } while (typeof items.LastEvaluatedKey != "undefined");
 
-  function onScan(err, data) {
-    if (err) {
-      scanResults.push({"error": err});
-    } else {        
-      scanResults.push({"message": "success"});
-      
-      data.Items.forEach(function(itemdata) {
-        itemdata.id = itemdata.sk2;
-        scanResults.push(itemdata);
-        ++count;
-      });
-
-      return scanResults;
-
-      if (typeof data.LastEvaluatedKey != "undefined") {
-        scanResults.push({"message2": "line231"});
-        params.ExclusiveStartKey = data.LastEvaluatedKey;
-        docClient.scan(params, onScan);
-      }
-    }
-  }
-  return dynamodb.scan(params, onScan);
+  return scanResults;
 }
 
 /**
