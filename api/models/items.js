@@ -218,14 +218,15 @@ const getAll = async() => {
 
   function onScan(err, data) {
     if (err) {
-        scanResults.push({"message": "error", "error": err});
+      scanResults.push({"error": err});
     } else {        
       scanResults.push({"message": "success"});
-      data.Items.forEach(function(itemdata) {
-        itemdata.id = itemdata.sk2;
-        scanResults.push(itemdata);
-        ++count;
-      });
+      return data;
+      // data.Items.forEach(function(itemdata) {
+      //   itemdata.id = itemdata.sk2;
+      //   scanResults.push(itemdata);
+      //   ++count;
+      // });
 
       if (typeof data.LastEvaluatedKey != "undefined") {
         scanResults.push({"message2": "line231"});
