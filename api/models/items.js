@@ -212,7 +212,13 @@ const getAll = async() => {
   let items;
   do {
       items =  await dynamodb.scan(params).promise();
-      items.Items.forEach((item) => scanResults.push(item));
+      items.Items.forEach((item) => {
+        if (item.sk === "item") {
+          item.id = item.sk2;
+          item.name = item.hk;
+          scanResults.push(item);
+        }
+      });
       params.ExclusiveStartKey  = items.LastEvaluatedKey;
   } while (typeof items.LastEvaluatedKey != "undefined");
 
