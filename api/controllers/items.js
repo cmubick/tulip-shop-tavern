@@ -61,7 +61,7 @@ const update = async (req, res, next) => {
  * @param {*} next 
  */
 const get = async (req, res, next) => {
-  const item = await items.getById(req.body.id)
+  const item = await items.getById(req.params.id)
   res.json({ item })
 }
 
