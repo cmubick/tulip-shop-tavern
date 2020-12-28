@@ -221,12 +221,14 @@ const getAll = async() => {
       scanResults.push({"error": err});
     } else {        
       scanResults.push({"message": "success"});
-      return data;
-      // data.Items.forEach(function(itemdata) {
-      //   itemdata.id = itemdata.sk2;
-      //   scanResults.push(itemdata);
-      //   ++count;
-      // });
+      
+      data.Items.forEach(function(itemdata) {
+        itemdata.id = itemdata.sk2;
+        scanResults.push(itemdata);
+        ++count;
+      });
+
+      return scanResults;
 
       if (typeof data.LastEvaluatedKey != "undefined") {
         scanResults.push({"message2": "line231"});
