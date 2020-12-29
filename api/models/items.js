@@ -116,7 +116,7 @@ const getById = async(id) => {
     KeyConditionExpression: 'hk = :hk and sk = :sk and sk2 = :sk2',
     ExpressionAttributeValues: { ':hk': id, ':sk': 'item', ':sk2': 'item' }
   }
-  let item = await dynamodb.query(params).promise()
+  let item = await dynamodb.scan(params).promise()
 
   item = item.Items && item.Items[0] ? item.Items[0] : null
   if (item) {
