@@ -72,32 +72,57 @@ const update = async(item = {}) => {
     throw new Error(`"type" is required`)
   }
 
-  // Save
-  const params = {
+  var params = {
     TableName: process.env.db,
-    Key:{
-      "hk": item.id
-    },
-    Item: {
-      hk: item.id,
-      sk: 'item',
-      sk2: 'item',
-      updatedAt: Date.now(),
-      description: item.description,
-      price: item.price,
-      order: item.order,
-      active: item.active,
-      type: item.type,
-      name: item.name
-    },
-    UpdateExpression: "SET name = :name, SET type = :type, SET active = :active, SET order = :order, SET price = :price, SET description = :description",
-    ConditionExpression:"hk = :val",
-    ExpressionAttributeValues: {
-        ":val": item.id
-    }
+    Key: {},
+    ExpressionAttributeValues: {},
+    ExpressionAttributeNames: {},
+    UpdateExpression: "",
+    ReturnValues: "UPDATED_NEW"
+  };
+
+  params["Key"]["hk"] = item["hk"];
+
+  let prefix = "set ";
+  let attributes = Object.keys(item);
+  for (let i=0; i<attributes.length; i++) {
+      let attribute = attributes[i];
+      if (attribute != idAttributeName) {
+          params["UpdateExpression"] += prefix + "#" + attribute + " = :" + attribute;
+          params["ExpressionAttributeValues"][":" + attribute] = item[attribute];
+          params["ExpressionAttributeNames"]["#" + attribute] = attribute;
+          prefix = ", ";
+      }
   }
 
-  await dynamodb.update(params).promise()
+  return await documentClient.update(params).promise();
+
+  // Save
+  // const params = {
+  //   TableName: process.env.db,
+  //   Key:{
+  //     "hk": item.id
+  //   },
+  //   Item: {
+  //     hk: item.id,
+  //     sk: 'item',
+  //     sk2: 'item',
+  //     updatedAt: Date.now(),
+  //     description: item.description,
+  //     price: item.price,
+  //     order: item.order,
+  //     active: item.active,
+  //     type: item.type,
+  //     name: item.name
+  //   },
+  //   UpdateExpression: "SET name = :name, SET type = :type, SET active = :active, SET order = :order, SET price = :price, SET description = :description",
+  //   ConditionExpression:"hk = :val",
+  //   ExpressionAttributeValues: {
+  //       ":val": item.id
+  //   }
+  // }
+
+  // await dynamodb.update(params).promise()
 }
 
 /**
