@@ -72,6 +72,10 @@ const update = async(item = {}) => {
     throw new Error(`"type" is required`)
   }
 
+  item.hk = item.id;
+  item.sk = "item";
+  item.sk2 = "item";
+
   var params = {
     TableName: process.env.db,
     Key: {
