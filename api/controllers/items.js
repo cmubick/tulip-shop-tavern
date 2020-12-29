@@ -41,7 +41,7 @@ const createMany = async (req, res, next) => {
     try {
       await items.create(element)
     } catch (error) {
-      return res.status(400).json({ error: error.message })
+      console.log(`{ error: ${error.message}`)
     }
   });
 
