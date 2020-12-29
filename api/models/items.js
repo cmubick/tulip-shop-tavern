@@ -124,8 +124,7 @@ const remove = async(id) => {
   // Check if item exists
   const existingItem = await getById(id)
   if (!existingItem) {
-    throw
-     new Error(`An item with id "${id}" does not exists`)
+    throw new Error(`An item with id "${id}" does not exists`)
   }
 
   const params = {
