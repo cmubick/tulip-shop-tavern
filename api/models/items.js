@@ -136,7 +136,13 @@ const remove = async(id) => {
     }
   }
 
-  await dynamodb.delete(params).promise()
+  await dynamodb.delete(params, function(err, data) {
+    if (err) {
+        throw new Error(`Unable to delete item. Error JSON: ${JSON.stringify(err, null, 2)}`);
+    } else {
+        return JSON.stringify("DeleteItem succeeded:", JSON.stringify(data, null, 2))
+    }
+});
 }
 
 /**
