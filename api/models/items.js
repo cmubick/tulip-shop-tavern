@@ -133,8 +133,7 @@ const remove = async(id) => {
     Key: {
       'sk2': id
     },
-    KeyConditionExpression: 'sk2 = :sk2 and sk = :sk',
-    ExpressionAttributeValues: { ':sk2': id, ':sk': 'item' }
+    KeyConditionExpression: 'sk2 = :sk2 and sk = :sk'
   }
 
   await dynamodb.delete(params).promise()
