@@ -130,27 +130,12 @@ const remove = async(id) => {
   const params = {
     TableName: process.env.db,
     IndexName: process.env.dbIndex1,
+    Key: {
+      'sk2': id
+    },
     KeyConditionExpression: 'sk2 = :sk2 and sk = :sk',
     ExpressionAttributeValues: { ':sk2': id, ':sk': 'item' }
   }
-
-  // const params = {
-  //   TableName: process.env.db,
-  //   Key: {
-  //     "sk": "item",
-  //     "hk": existingItem.name,
-  //     "sk2": id
-  //   },
-  //   Item: {
-  //     hk: existingItem.name,
-  //     sk: 'item',
-  //     sk2: id
-  //   },
-  //   ConditionExpression:" = :val",
-  //   ExpressionAttributeValues: {
-  //       ":val": 5.0
-  //   }
-  // }
 
   await dynamodb.delete(params).promise()
 }
