@@ -28,12 +28,6 @@ const create = async(item = {}) => {
     throw new Error(`"type" is required`)
   }
 
-  // Check if item is already created
-  const existingItem = await getByName(item.name)
-  if (existingItem) {
-    throw new Error(`An item with name "${item.name}" already exists`)
-  }
-
   // Save
   const params = {
     TableName: process.env.db,
@@ -210,7 +204,6 @@ module.exports = {
   create,
   update,
   remove,
-  getByName,
   getById,
   getAll,
   convertToPublicFormat,
