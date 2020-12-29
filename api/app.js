@@ -64,6 +64,8 @@ app.post(`/user`, passport.authenticate('jwt', { session: false }), asyncHandler
 
 app.post(`/items/create`, passport.authenticate('jwt', { session: false }), asyncHandler(items.create))
 
+app.post(`/items/create/many`, passport.authenticate('jwt', { session: false }), asyncHandler(items.createMany))
+
 app.put(`/items/update`, passport.authenticate('jwt', { session: false }), asyncHandler(items.update))
 
 app.get(`/items`, asyncHandler(items.getAll))

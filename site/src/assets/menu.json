@@ -80,13 +80,21 @@
     "active": 1,
     "order": 4
   },{
+    "id": "65",
+    "name": "Fried Chicken Sandwich",
+    "description": "Spicy cornmeal breaded and fried chicken thigh, garlic aioli, honey mustard, Colby-jack cheese, shredded lettuce, pickle, milk bun",
+    "type": "sandwich",
+    "price": 10,
+    "active": 1,
+    "order": 5
+  },{
     "id": "11",
     "name": "Fish Sandwich",
     "description": "Panko breaded and fried Blue North Alaskan Cod, tartar sauce, shredded lettuce, pickle, milk bun",
     "type": "sandwich",
     "price": 11,
     "active": 1,
-    "order": 5
+    "order": 6
   },{
     "id": "12",
     "name": "Vegan Tavern Burger",
@@ -94,7 +102,7 @@
     "type": "sandwich",
     "price": 10,
     "active": 1,
-    "order": 6
+    "order": 7
   },{
     "id": "13",
     "name": "Garden Salad",
@@ -348,7 +356,7 @@
     "name": "Cloudburst",
     "description": "Stout",
     "type": "draft",
-    "price": 6,
+    "price": 7,
     "active": 1,
     "order": 2
   },{
@@ -377,18 +385,18 @@
     "order": 5
   },{
     "id": "49",
-    "name": "Wayfinder",
-    "description": "Doppelbock",
+    "name": "Weltenburger",
+    "description": "Dunkel",
     "type": "draft",
     "price": 7,
     "active": 1,
     "order": 6
   },{
     "id": "50",
-    "name": "Baird & Dewar",
-    "description": "Reserve Cider",
+    "name": "Aval",
+    "description": "Cider",
     "type": "draft",
-    "price": 8,
+    "price": 6,
     "active": 1,
     "order": 7
   },{
@@ -440,13 +448,21 @@
     "active": 1,
     "order": 3
   },{
+    "id": "64",
+    "name": "Okocim",
+    "description": "Polish Pils",
+    "type": "tallboy",
+    "price": 4,
+    "active": 1,
+    "order": 4
+  },{
     "id": "57",
     "name": "Modelo",
     "description": "Especial",
     "type": "tallboy",
     "price": 5,
     "active": 1,
-    "order": 4
+    "order": 5
   },{
     "id": "58",
     "name": "Aval",
@@ -454,7 +470,7 @@
     "type": "cider",
     "price": 6,
     "active": 1,
-    "order": 5
+    "order": 6
   },{
     "id": "59",
     "name": "Son of Man",
@@ -462,7 +478,7 @@
     "type": "cider",
     "price": 7,
     "active": 1,
-    "order": 6
+    "order": 7
   },{
     "id": "60",
     "name": "Swift",
@@ -470,7 +486,7 @@
     "type": "cider",
     "price": 7,
     "active": 1,
-    "order": 7
+    "order": 8
   },{
     "id": "61",
     "name": "Swift",
@@ -478,13 +494,13 @@
     "type": "cider",
     "price": 7,
     "active": 1,
-    "order": 8
+    "order": 9
   },{
     "id": "62",
     "name": "Craft",
     "description": "Always rotating, ask your server",
     "type": "tallboy",
     "active": 1,
-    "order": 9
+    "order": 10
   }
 ]

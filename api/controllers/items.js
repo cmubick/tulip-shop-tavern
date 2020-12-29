@@ -30,6 +30,22 @@ const create = async (req, res, next) => {
 }
 
 /**
+ * Create Many
+ */
+const createMany = async (req, res, next) => {
+
+  req.items.forEach(element => {
+    try {
+      await items.create(element)
+    } catch (error) {
+      return res.status(400).json({ error: error.message })
+    }
+  });
+
+  res.json({ message: 'create items successful' })
+}
+
+/**
  * Update Item
  * @param {*} req 
  * @param {*} res 
@@ -104,6 +120,7 @@ const remove = async (req, res, next) => {
 
 module.exports = {
   create,
+  createMany,
   update,
   get,
   getAll,
