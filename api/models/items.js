@@ -89,13 +89,15 @@ const update = async(item = {}) => {
     ReturnValues: "UPDATED_NEW"
   };
 
-  params["Key"]["hk"] = item["id"];
+  params["Key"]["hk"] = item.id;
+  params["Key"]["sk"] = "item";
+  params["Key"]["sk2"] = "item";
 
   let prefix = "set ";
   let attributes = Object.keys(item);
   for (let i=0; i<attributes.length; i++) {
       let attribute = attributes[i];
-      if (attribute != "hk") {
+      if (attribute !== "hk" && attribute !== "sk" && attribute !== "sk2") {
           params["UpdateExpression"] += prefix + "#" + attribute + " = :" + attribute;
           params["ExpressionAttributeValues"][":" + attribute] = item[attribute];
           params["ExpressionAttributeNames"]["#" + attribute] = attribute;
