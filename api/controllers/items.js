@@ -54,11 +54,7 @@ const update = async (req, res, next) => {
     return res.status(404).send({ error: 'Update failed. Item not found.' })
   }
 
-  try {
-    await items.update(req.body)
-  } catch (error) {
-    return res.status(400).json({ error: error.message })
-  }
+  await items.update(req.body)
 
   res.json({ message: 'Update item successful', item })
 }
