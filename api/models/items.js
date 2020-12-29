@@ -38,9 +38,8 @@ const create = async(item = {}) => {
   const params = {
     TableName: process.env.db,
     Item: {
-      hk: item.name,
+      hk: shortid.generate(),
       sk: 'item',
-      sk2: shortid.generate(),
       createdAt: Date.now(),
       updatedAt: Date.now(),
       description: item.description,
@@ -48,6 +47,7 @@ const create = async(item = {}) => {
       order: item.order,
       active: item.active,
       type: item.type,
+      name: item.name
     }
   }
 
@@ -83,27 +83,19 @@ const update = async(item = {}) => {
     throw new Error(`An item with id "${item.id}" does not exists`)
   }
 
-  // Check if name is already taken
-  if (existingItem.name !== item.name) {
-    let itemByName = await getByName(item.name)
-    if (itemByName.id === item.id) {
-      throw new Error(`An item with name "${item.name}" already exists in the ${itemByName.type} section.`)
-    }
-  }
-
   // Save
   const params = {
     TableName: process.env.db,
     Item: {
-      hk: item.name,
+      hk: item.id,
       sk: 'item',
-      sk2: item.id,
       updatedAt: Date.now(),
       description: item.description,
       price: item.price,
       order: item.order,
       active: item.active,
       type: item.type,
+      name: item.name
     }
   }
 
@@ -130,10 +122,10 @@ const remove = async(item) => {
   const params = {
     TableName:process.env.db,
     Key:{
-      "hk": item.name,
+      "hk": item.id,
       "sk": "item"
     },
-    ConditionExpression:"sk2 = :val",
+    ConditionExpression:"hk = :val",
     ExpressionAttributeValues: {
         ":val": item.id
     }
@@ -146,35 +138,6 @@ const remove = async(item) => {
         console.log("DeleteItem succeeded:", JSON.stringify(data, null, 2));
     }
   });
-}
-
-/**
- * Get item by name
- * @param {string} name
- */
-
-const getByName = async(name) => {
-
-  // Validate
-  if (!name) {
-    throw new Error(`"name" is required`)
-  }
-
-  // Query
-  const params = {
-    TableName: process.env.db,
-    KeyConditionExpression: 'hk = :hk',
-    ExpressionAttributeValues: { ':hk': name }
-  }
-
-  let item = await dynamodb.query(params).promise()
-
-  item = item.Items && item.Items[0] ? item.Items[0] : null
-  if (item) {
-    item.id = item.sk2
-    item.name = item.hk
-  }
-  return item
 }
 
 /**
@@ -193,15 +156,14 @@ const getById = async(id) => {
   const params = {
     TableName: process.env.db,
     IndexName: process.env.dbIndex1,
-    KeyConditionExpression: 'sk2 = :sk2 and sk = :sk',
-    ExpressionAttributeValues: { ':sk2': id, ':sk': 'item' }
+    KeyConditionExpression: 'hk = :hk and sk = :sk',
+    ExpressionAttributeValues: { ':hk': id, ':sk': 'item' }
   }
   let item = await dynamodb.query(params).promise()
 
   item = item.Items && item.Items[0] ? item.Items[0] : null
   if (item) {
-    item.id = item.sk2
-    item.name = item.hk
+    item.id = item.hk
   }
   return item
 }
@@ -222,8 +184,7 @@ const getAll = async() => {
       items =  await dynamodb.scan(params).promise();
       items.Items.forEach((item) => {
         if (item.sk === "item") {
-          item.id = item.sk2;
-          item.name = item.hk;
+          item.id = item.hk;
           scanResults.push(item);
         }
       });
@@ -239,11 +200,9 @@ const getAll = async() => {
  * @param {*} item 
  */
 const convertToPublicFormat = (item = {}) => {
-  item.name = item.hk || null
-  item.id = item.sk2 || null
+  item.id = item.hk || null
   if (item.hk) delete item.hk
   if (item.sk) delete item.sk
-  if (item.sk2) delete item.sk2
   return item
 }
 

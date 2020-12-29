@@ -18,15 +18,7 @@ const create = async (req, res, next) => {
     return res.status(400).json({ error: error.message })
   }
 
-  let item
-  try {
-    item = await items.getByName(req.body.name)
-  } catch (error) {
-    console.log(error)
-    return next(error, null)
-  }
-
-  res.json({ message: 'create item successful', item })
+  res.json({ message: 'create item successful' })
 }
 
 /**
