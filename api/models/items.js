@@ -130,8 +130,9 @@ const remove = async(id) => {
   const params = {
     TableName:process.env.db,
     Key:{
-        "sk2": id,
-        "sk": "item"
+      "hk": existingItem.hk,
+      "sk": "item",
+      "sk2": id
     },
     ConditionExpression:"id = :val",
     ExpressionAttributeValues: {
