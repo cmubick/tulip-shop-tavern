@@ -123,7 +123,7 @@ const update = async(item = {}) => {
       name: item.name
     },
     UpdateExpression: "SET #name = :name, SET #type = :type, SET #active = :active, SET #order = :order, SET #price = :price, SET #description = :description",
-    ConditionExpression:"hk = :id && sk = item && sk2 = item",
+    ConditionExpression:"hk = :id && sk = 'item' && sk2 = 'item'",
     ExpressionAttributeValues: {
         ":id": item.id, ":name": item.name, ":type": item.type, ":active": item.active, ":order": item.order, ":price": item.price, ":description": item.description
     }
