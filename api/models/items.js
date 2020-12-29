@@ -108,7 +108,9 @@ const update = async(item = {}) => {
   const params = {
     TableName: process.env.db,
     Key:{
-      "hk": item.id
+      "hk": item.id,
+      "sk": "item",
+      "sk2": "item"
     },
     Item: {
       hk: item.id,
@@ -122,7 +124,7 @@ const update = async(item = {}) => {
       type: item.type,
       name: item.name
     },
-    UpdateExpression: "SET #name = :name, SET #type = :type, SET #active = :active, SET #order = :order, SET #price = :price, SET #description = :description",
+    UpdateExpression: "SET #name = :name, SET #type = :type, SET #active = :active, SET #order = :order, SET #price = :price, SET #description = :description, WHERE #hk = :id",
     ConditionExpression:"hk = :id && sk = :sk && sk2 = :sk",
     ExpressionAttributeValues: {
         ":id": item.id, ":name": item.name, ":type": item.type, ":active": item.active, ":order": item.order, ":price": item.price, ":description": item.description, ":sk": "item"
