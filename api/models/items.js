@@ -78,6 +78,7 @@ const update = async(item = {}) => {
     Item: {
       hk: item.id,
       sk: 'item',
+      sk2: 'item',
       updatedAt: Date.now(),
       description: item.description,
       price: item.price,
