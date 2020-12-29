@@ -34,6 +34,7 @@ const create = async(item = {}) => {
     Item: {
       hk: shortid.generate(),
       sk: 'item',
+      sk2: 'item',
       createdAt: Date.now(),
       updatedAt: Date.now(),
       description: item.description,
