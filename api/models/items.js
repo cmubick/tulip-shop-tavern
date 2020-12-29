@@ -140,7 +140,7 @@ const remove = async(id) => {
     if (err) {
         throw new Error(`Unable to delete item. Error JSON: ${JSON.stringify(err, null, 2)}`);
     } else {
-        return JSON.stringify("DeleteItem succeeded:", JSON.stringify(data, null, 2))
+        return JSON.stringify(data)
     }
 });
 }
