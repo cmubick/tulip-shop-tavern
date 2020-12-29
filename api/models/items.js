@@ -83,15 +83,12 @@ const update = async(item = {}) => {
       "sk": "item",
       "sk2": "item"
     },
+    ConditionExpression:"hk = :id",
     ExpressionAttributeValues: {},
     ExpressionAttributeNames: {},
     UpdateExpression: "",
     ReturnValues: "UPDATED_NEW"
   };
-
-  params["Key"]["hk"] = item.id;
-  params["Key"]["sk"] = "item";
-  params["Key"]["sk2"] = "item";
 
   let prefix = "set ";
   let attributes = Object.keys(item);
