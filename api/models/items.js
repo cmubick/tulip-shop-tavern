@@ -131,7 +131,8 @@ const remove = async(id) => {
     TableName: process.env.db,
     IndexName: process.env.dbIndex1,
     Key: {
-      'sk2': id
+      'sk2': id,
+      'sk': 'item'
     },
     KeyConditionExpression: 'sk2 = :sk2 and sk = :sk'
   }
