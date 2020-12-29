@@ -112,37 +112,37 @@ const update = async(item = {}) => {
 
 /**
  * Delete item
- * @param {string} id
+ * @param {string} item.id Item id
+ * @param {string} item.name Item name
+ * @param {string} item.description Item description
+ * @param {string} item.price Item price
+ * @param {string} item.order Item order
+ * @param {string} item.active Item active
+ * @param {string} item.type Item type
  */
-const remove = async(id) => {
+const remove = async(item) => {
 
   // Validate
-  if (!id) {
+  if (!item.id) {
     throw new Error(`"id" is required`)
-  }
-
-  // Check if item exists
-  const existingItem = await getById(id)
-  if (!existingItem) {
-    throw new Error(`An item with id "${id}" does not exists`)
   }
 
   const params = {
     TableName:process.env.db,
     Key:{
-      "hk": existingItem.name,
+      "hk": item.name,
       "sk": "item",
-      "sk2": id
+      "sk2": item.id
     }
   }
 
-  await dynamodb.delete(params, function(err, data) {
+  dynamodb.delete(params, function(err, data) {
     if (err) {
         throw new Error(`Unable to delete item. Error JSON: ${JSON.stringify(err, null, 2)}`);
     } else {
         return JSON.stringify(data)
     }
-});
+  });
 }
 
 /**
