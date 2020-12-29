@@ -113,6 +113,7 @@ const update = async(item = {}) => {
       sk: "item",
       sk2: "item"
     },
+    ConditionExpression: "hk = :hk && sk = :sk && sk2 = :sk2",
     UpdateExpression: "set name = :name, set type = :type, set active = :active, set order = :order, set price = :price, set description = :description, set updatedAt = :updatedAt",
     ExpressionAttributeValues: {
       ":name":item.name,
@@ -121,7 +122,10 @@ const update = async(item = {}) => {
       ":order":item.order,
       ":price":item.price,
       ":description":item.description,
-      ":updatedAt":Date.now()
+      ":updatedAt":Date.now(),
+      ":sk":"item",
+      ":sk2":"item",
+      ":hk":item.id
     },
     ReturnValues: "UPDATED_NEW"
   }
