@@ -48,9 +48,7 @@ const createMany = async (req, res, next) => {
  */
 const update = async (req, res, next) => {
 
-  let item
-  try { item = await items.getById(req.body.id) }
-  catch (error) { return done(error, null) }
+  let item = await items.getById(req.body.id)
 
   if (!item) {
     return res.status(404).send({ error: 'Update failed. Item not found.' })

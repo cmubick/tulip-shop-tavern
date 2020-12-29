@@ -72,12 +72,6 @@ const update = async(item = {}) => {
     throw new Error(`"type" is required`)
   }
 
-  // Check if item exists
-  const existingItem = await getById(item.id)
-  if (!existingItem) {
-    throw new Error(`An item with id "${item.id}" does not exists`)
-  }
-
   // Save
   const params = {
     TableName: process.env.db,
