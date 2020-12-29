@@ -75,6 +75,10 @@ const update = async(item = {}) => {
   // Save
   const params = {
     TableName: process.env.db,
+    Key:{
+      "hk": item.id,
+      "sk": "item"
+    },
     Item: {
       hk: item.id,
       sk: 'item',
