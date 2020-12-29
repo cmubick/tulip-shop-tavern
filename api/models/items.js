@@ -133,7 +133,7 @@ const remove = async(item) => {
       "hk": item.name,
       "sk": "item"
     },
-    ConditionExpression:"id = :val",
+    ConditionExpression:"sk2 = :val",
     ExpressionAttributeValues: {
         ":val": item.id
     }
@@ -141,9 +141,9 @@ const remove = async(item) => {
 
   dynamodb.delete(params, function(err, data) {
     if (err) {
-        throw new Error(`Unable to delete item. Error JSON: ${JSON.stringify(err, null, 2)}`);
+        console.error("Unable to delete item. Error JSON:", JSON.stringify(err, null, 2));
     } else {
-        return JSON.stringify(data)
+        console.log("DeleteItem succeeded:", JSON.stringify(data, null, 2));
     }
   });
 }
