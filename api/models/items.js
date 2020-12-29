@@ -91,6 +91,10 @@ const update = async(item = {}) => {
       active: item.active,
       type: item.type,
       name: item.name
+    },
+    ConditionExpression:"hk = :val",
+    ExpressionAttributeValues: {
+        ":val": item.id
     }
   }
 
