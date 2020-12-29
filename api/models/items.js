@@ -134,10 +134,6 @@ const remove = async(id) => {
       "sk": "item",
       "sk2": id
     },
-    ConditionExpression:"id = :val",
-    ExpressionAttributeValues: {
-        ":val": id
-    },
     IndexName: process.env.dbIndex1
   }
 
