@@ -131,8 +131,11 @@ const remove = async(item) => {
     TableName:process.env.db,
     Key:{
       "hk": item.name,
-      "sk": "item",
-      "sk2": item.id
+      "sk": "item"
+    },
+    ConditionExpression:"id = :val",
+    ExpressionAttributeValues: {
+        ":val": item.id
     }
   }
 
