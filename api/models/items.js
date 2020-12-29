@@ -107,15 +107,11 @@ const update = async(item = {}) => {
   // Save
   const params = {
     TableName: process.env.db,
-    Key:{
-      "hk": item.id,
-      "sk": "item",
-      "sk2": "item"
-    },
     Item: {
       hk: item.id,
       sk: 'item',
       sk2: 'item',
+      createdAt: Date.now(),
       updatedAt: Date.now(),
       description: item.description,
       price: item.price,
@@ -123,15 +119,10 @@ const update = async(item = {}) => {
       active: item.active,
       type: item.type,
       name: item.name
-    },
-    UpdateExpression: "SET #name = :name, SET #type = :type, SET #active = :active, SET #order = :order, SET #price = :price, SET #description = :description, WHERE #hk = :id",
-    ConditionExpression:"hk = :id && sk = :sk && sk2 = :sk",
-    ExpressionAttributeValues: {
-        ":id": item.id, ":name": item.name, ":type": item.type, ":active": item.active, ":order": item.order, ":price": item.price, ":description": item.description, ":sk": "item"
     }
   }
 
-  await dynamodb.update(params).promise()
+  await dynamodb.put(params).promise()
 }
 
 /**
