@@ -55,13 +55,13 @@ const update = async (req, res, next) => {
 }
 
 /**
- * Get a user
+ * Get an item
  * @param {*} req 
  * @param {*} res 
  * @param {*} next 
  */
 const get = async (req, res, next) => {
-  const item = items.convertToPublicFormat(req.item)
+  const item = await items.getById(req.params)
   res.json({ item })
 }
 
