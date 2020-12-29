@@ -70,66 +70,66 @@ const update = async(item = {}) => {
   }
   if (!item.type) {
     throw new Error(`"type" is required`)
-  }
+ }
 
-  item.hk = item.id;
-  item.sk = "item";
-  item.sk2 = "item";
+  // item.hk = item.id;
+  // item.sk = "item";
+  // item.sk2 = "item";
 
-  var params = {
-    TableName: process.env.db,
-    Key: {
-      "hk": item.id,
-      "sk": "item",
-      "sk2": "item"
-    },
-    ConditionExpression:"hk = :id",
-    ExpressionAttributeValues: {},
-    ExpressionAttributeNames: {},
-    UpdateExpression: "",
-    ReturnValues: "UPDATED_NEW"
-  };
-
-  let prefix = "set ";
-  let attributes = Object.keys(item);
-  for (let i=0; i<attributes.length; i++) {
-      let attribute = attributes[i];
-      if (attribute !== "hk" && attribute !== "sk" && attribute !== "sk2") {
-          params["UpdateExpression"] += prefix + "#" + attribute + " = :" + attribute;
-          params["ExpressionAttributeValues"][":" + attribute] = item[attribute];
-          params["ExpressionAttributeNames"]["#" + attribute] = attribute;
-          prefix = ", ";
-      }
-  }
-
-  return await documentClient.update(params).promise();
-
-  // Save
-  // const params = {
+  // var params = {
   //   TableName: process.env.db,
-  //   Key:{
-  //     "hk": item.id
+  //   Key: {
+  //     "hk": item.id,
+  //     "sk": "item",
+  //     "sk2": "item"
   //   },
-  //   Item: {
-  //     hk: item.id,
-  //     sk: 'item',
-  //     sk2: 'item',
-  //     updatedAt: Date.now(),
-  //     description: item.description,
-  //     price: item.price,
-  //     order: item.order,
-  //     active: item.active,
-  //     type: item.type,
-  //     name: item.name
-  //   },
-  //   UpdateExpression: "SET name = :name, SET type = :type, SET active = :active, SET order = :order, SET price = :price, SET description = :description",
-  //   ConditionExpression:"hk = :val",
-  //   ExpressionAttributeValues: {
-  //       ":val": item.id
-  //   }
+  //   ConditionExpression:"hk = :id",
+  //   ExpressionAttributeValues: {},
+  //   ExpressionAttributeNames: {},
+  //   UpdateExpression: "",
+  //   ReturnValues: "UPDATED_NEW"
+  // };
+
+  // let prefix = "set ";
+  // let attributes = Object.keys(item);
+  // for (let i=0; i<attributes.length; i++) {
+  //     let attribute = attributes[i];
+  //     if (attribute !== "hk" && attribute !== "sk" && attribute !== "sk2") {
+  //         params["UpdateExpression"] += prefix + "#" + attribute + " = :" + attribute;
+  //         params["ExpressionAttributeValues"][":" + attribute] = item[attribute];
+  //         params["ExpressionAttributeNames"]["#" + attribute] = attribute;
+  //         prefix = ", ";
+  //     }
   // }
 
-  // await dynamodb.update(params).promise()
+  // return await documentClient.update(params).promise();
+
+  // Save
+  const params = {
+    TableName: process.env.db,
+    Key:{
+      "hk": item.id
+    },
+    Item: {
+      hk: item.id,
+      sk: 'item',
+      sk2: 'item',
+      updatedAt: Date.now(),
+      description: item.description,
+      price: item.price,
+      order: item.order,
+      active: item.active,
+      type: item.type,
+      name: item.name
+    },
+    UpdateExpression: "SET #name = :name, SET #type = :type, SET #active = :active, SET #order = :order, SET #price = :price, SET #description = :description",
+    ConditionExpression:"hk = :id",
+    ExpressionAttributeValues: {
+        ":id": item.id, ":name": item.name, ":type": item.type, ":active": item.active, ":order": item.order, ":price": item.price, ":description": item.description
+    }
+  }
+
+  await dynamodb.update(params).promise()
 }
 
 /**
