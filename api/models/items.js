@@ -85,7 +85,7 @@ const update = async(item = {}) => {
     ReturnValues: "UPDATED_NEW"
   };
 
-  params["Key"]["hk"] = item["hk"];
+  params["Key"]["hk"] = item["id"];
 
   let prefix = "set ";
   let attributes = Object.keys(item);
