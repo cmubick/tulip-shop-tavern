@@ -4,6 +4,7 @@
 
 const AWS = require('aws-sdk')
 const shortid = require('shortid')
+const { items } = require('.')
 
 const dynamodb = new AWS.DynamoDB.DocumentClient({
   region: process.env.AWS_REGION
@@ -107,22 +108,25 @@ const update = async(item = {}) => {
   // Save
   const params = {
     TableName: process.env.db,
-    Item: {
-      hk: item.id,
-      sk: 'item',
-      sk2: 'item',
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
-      description: item.description,
-      price: item.price,
-      order: item.order,
-      active: item.active,
-      type: item.type,
-      name: item.name
-    }
+    Key: {
+      hk: items.id,
+      sk: "item",
+      sk2: "item"
+    },
+    UpdateExpression: "set name = :name, set type = :type, set active = :active, set order = :order, set price = :price, set description = :description, set updatedAt = :updatedAt",
+    ExpressionAttributeValues: {
+      ":name":item.name,
+      ":type":item.type,
+      ":active":item.active,
+      ":order":item.order,
+      ":price":item.price,
+      ":description":item.description,
+      ":updatedAt":Date.now()
+    },
+    ReturnValues: "UPDATED_NEW"
   }
 
-  await dynamodb.put(params).promise()
+  await dynamodb.update(params).promise()
 }
 
 /**
