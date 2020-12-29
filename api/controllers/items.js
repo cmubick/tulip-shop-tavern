@@ -93,7 +93,7 @@ const remove = async (req, res, next) => {
   }
 
   try {
-    await items.remove(req.body)
+    await items.remove(req.body.id)
   } catch (error) {
     return res.status(400).json({ error: error.message })
   }

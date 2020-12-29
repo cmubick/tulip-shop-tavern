@@ -112,19 +112,19 @@ const update = async(item = {}) => {
 
 /**
  * Delete item
- * @param {string} item.id Item id
+ * @param {string} id
  */
-const remove = async(item = {}) => {
+const remove = async(id) => {
 
   // Validate
-  if (!item.id) {
+  if (!id) {
     throw new Error(`"id" is required`)
   }
 
   // Check if item exists
-  const existingItem = await getById(item.id)
+  const existingItem = await getById(id)
   if (!existingItem) {
-    throw new Error(`An item with id "${item.id}" does not exists`)
+    throw new Error(`An item with id "${id}" does not exists`)
   }
 
   // Save
@@ -133,7 +133,7 @@ const remove = async(item = {}) => {
     Item: {
       hk: existingItem.name,
       sk: 'item',
-      sk2: item.id
+      sk2: id
     }
   }
 
