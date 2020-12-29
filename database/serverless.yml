@@ -29,8 +29,6 @@ inputs:
           KeyType: RANGE
       Projection:
         ProjectionType: ALL
-plugins:
-  - serverless-domain-manager
 custom:
   customDomain:
     domainName: tulipshoptavern.chrisubick.io
