@@ -99,7 +99,7 @@ const remove = async (req, res, next) => {
     return res.status(400).json({ error: error.message })
   }
 
-  res.json({ message: response })
+  res.json({ response })
 }
 
 module.exports = {
