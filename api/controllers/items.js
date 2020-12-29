@@ -31,10 +31,13 @@ const create = async (req, res, next) => {
 
 /**
  * Create Many
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next
  */
 const createMany = async (req, res, next) => {
 
-  req.items.forEach(element => {
+  req.body.items.forEach(element => {
     try {
       items.create(element)
     } catch (error) {
