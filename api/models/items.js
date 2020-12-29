@@ -77,7 +77,8 @@ const update = async(item = {}) => {
     TableName: process.env.db,
     Key:{
       "hk": item.id,
-      "sk": "item"
+      "sk": "item",
+      "sk2": "item"
     },
     Item: {
       hk: item.id,
