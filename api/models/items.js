@@ -74,7 +74,10 @@ const update = async(item = {}) => {
 
   var params = {
     TableName: process.env.db,
-    Key: {},
+    Key: {
+      "hk": item.id,
+      "sk": "item"
+    },
     ExpressionAttributeValues: {},
     ExpressionAttributeNames: {},
     UpdateExpression: "",
