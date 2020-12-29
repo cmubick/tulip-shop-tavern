@@ -130,6 +130,9 @@ const remove = async(id) => {
   // Save
   const params = {
     TableName: process.env.db,
+    Key: {
+      sk2: id
+    },
     Item: {
       hk: existingItem.name,
       sk: 'item',
