@@ -124,23 +124,34 @@ const remove = async(id) => {
   // Check if item exists
   const existingItem = await getById(id)
   if (!existingItem) {
-    throw new Error(`An item with id "${id}" does not exists`)
+    throw
+     new Error(`An item with id "${id}" does not exists`)
   }
 
-  // Save
   const params = {
     TableName: process.env.db,
-    Key: {
-      "sk": "item",
-      "hk": existingItem.name,
-      "sk2": id
-    },
-    Item: {
-      hk: existingItem.name,
-      sk: 'item',
-      sk2: id
-    }
+    IndexName: process.env.dbIndex1,
+    KeyConditionExpression: 'sk2 = :sk2 and sk = :sk',
+    ExpressionAttributeValues: { ':sk2': id, ':sk': 'item' }
   }
+
+  // const params = {
+  //   TableName: process.env.db,
+  //   Key: {
+  //     "sk": "item",
+  //     "hk": existingItem.name,
+  //     "sk2": id
+  //   },
+  //   Item: {
+  //     hk: existingItem.name,
+  //     sk: 'item',
+  //     sk2: id
+  //   },
+  //   ConditionExpression:" = :val",
+  //   ExpressionAttributeValues: {
+  //       ":val": 5.0
+  //   }
+  // }
 
   await dynamodb.delete(params).promise()
 }
