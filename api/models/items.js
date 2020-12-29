@@ -130,11 +130,10 @@ const remove = async(id) => {
   const params = {
     TableName:process.env.db,
     Key:{
-      "hk": existingItem.hk,
+      "hk": existingItem.name,
       "sk": "item",
       "sk2": id
-    },
-    IndexName: process.env.dbIndex1
+    }
   }
 
   await dynamodb.delete(params).promise()
