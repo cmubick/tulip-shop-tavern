@@ -68,7 +68,7 @@ app.put(`/items/update`, passport.authenticate('jwt', { session: false }), async
 
 app.get(`/items`, asyncHandler(items.getAll))
 
-app.get(`/items/:id`, asyncHandler(items.get))
+app.get(`/item/:id`, asyncHandler(items.get))
 
 app.post(`/items/remove`, passport.authenticate('jwt', { session: false }), asyncHandler(items.remove))
 
