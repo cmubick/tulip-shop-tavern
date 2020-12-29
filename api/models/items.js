@@ -98,7 +98,7 @@ const update = async(item = {}) => {
     }
   }
 
-  await dynamodb.put(params).promise()
+  await dynamodb.update(params).promise()
 }
 
 /**
