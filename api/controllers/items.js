@@ -37,9 +37,9 @@ const create = async (req, res, next) => {
  */
 const createMany = async (req, res, next) => {
 
-  req.body.items.forEach(element => {
+  req.body.items.forEach(async (element) => {
     try {
-      items.create(element)
+      await items.create(element)
     } catch (error) {
       return res.status(400).json({ error: error.message })
     }
