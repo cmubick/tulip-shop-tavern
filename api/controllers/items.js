@@ -85,6 +85,7 @@ const getAll = async (req, res, next) => {
 const remove = async (req, res, next) => {
 
   let item
+  let response
   try { item = await items.getById(req.body.id) }
   catch (error) { return done(error, null) }
 
@@ -93,12 +94,12 @@ const remove = async (req, res, next) => {
   }
 
   try {
-    await items.remove(req.body.id)
+    response = await items.remove(req.body.id)
   } catch (error) {
     return res.status(400).json({ error: error.message })
   }
 
-  res.json({ message: 'Remove item successful' })
+  res.json(response)
 }
 
 module.exports = {
