@@ -95,7 +95,7 @@ const update = async(item = {}) => {
   let attributes = Object.keys(item);
   for (let i=0; i<attributes.length; i++) {
       let attribute = attributes[i];
-      if (attribute != idAttributeName) {
+      if (attribute != "hk") {
           params["UpdateExpression"] += prefix + "#" + attribute + " = :" + attribute;
           params["ExpressionAttributeValues"][":" + attribute] = item[attribute];
           params["ExpressionAttributeNames"]["#" + attribute] = attribute;
