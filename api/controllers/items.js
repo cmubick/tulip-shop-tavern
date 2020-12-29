@@ -13,7 +13,7 @@ const { items } = require('../models')
 const create = async (req, res, next) => {
 
   try {
-    await items.create(req.body)
+    await items.put(req.body)
   } catch (error) {
     return res.status(400).json({ error: error.message })
   }
@@ -31,7 +31,7 @@ const createMany = async (req, res, next) => {
 
   await req.body.data.forEach(async (element) => {
     try {
-      await items.create(element)
+      await items.put(element)
     } catch (error) {
       console.log(`{ error: ${error.message}`)
     }
@@ -54,7 +54,7 @@ const update = async (req, res, next) => {
     return res.status(404).send({ error: 'Update failed. Item not found.' })
   }
 
-  await items.update(req.body)
+  await items.put(req.body)
 
   res.json({ message: 'Update item successful', item })
 }

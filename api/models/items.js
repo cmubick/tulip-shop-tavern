@@ -19,7 +19,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient({
  * @param {string} item.active Item active
  * @param {string} item.type Item type
  */
-const create = async(item = {}) => {
+const put = async(item = {}) => {
 
   // Validate
   if (!item.name) {
@@ -29,14 +29,23 @@ const create = async(item = {}) => {
     throw new Error(`"type" is required`)
   }
 
+  let id, createdAtValue
+  if (item.id) {
+    id = item.id
+    createdAtValue = item.createdAt
+  } else {
+    id = shortid.generate()
+    createdAtValue = Date.now()
+  }
+
   // Save
   const params = {
     TableName: process.env.db,
     Item: {
-      hk: shortid.generate(),
+      hk: id,
       sk: 'item',
       sk2: 'item',
-      createdAt: Date.now(),
+      createdAt: createdAtValue,
       updatedAt: Date.now(),
       description: item.description,
       price: item.price,
@@ -48,89 +57,6 @@ const create = async(item = {}) => {
   }
 
   await dynamodb.put(params).promise()
-}
-
-/**
- * Update item
- * @param {string} item.id Item id
- * @param {string} item.name Item name
- * @param {string} item.description Item description
- * @param {string} item.price Item price
- * @param {string} item.order Item order
- * @param {string} item.active Item active
- * @param {string} item.type Item type
- */
-const update = async(item = {}) => {
-
-  // Validate
-  if (!item.id) {
-    throw new Error(`"id" is required`)
-  }
-  if (!item.name) {
-    throw new Error(`"name" is required`)
-  }
-  if (!item.type) {
-    throw new Error(`"type" is required`)
- }
-
-  // item.hk = item.id;
-  // item.sk = "item";
-  // item.sk2 = "item";
-
-  // var params = {
-  //   TableName: process.env.db,
-  //   Key: {
-  //     "hk": item.id,
-  //     "sk": "item",
-  //     "sk2": "item"
-  //   },
-  //   ConditionExpression:"hk = :id",
-  //   ExpressionAttributeValues: {},
-  //   ExpressionAttributeNames: {},
-  //   UpdateExpression: "",
-  //   ReturnValues: "UPDATED_NEW"
-  // };
-
-  // let prefix = "set ";
-  // let attributes = Object.keys(item);
-  // for (let i=0; i<attributes.length; i++) {
-  //     let attribute = attributes[i];
-  //     if (attribute !== "hk" && attribute !== "sk" && attribute !== "sk2") {
-  //         params["UpdateExpression"] += prefix + "#" + attribute + " = :" + attribute;
-  //         params["ExpressionAttributeValues"][":" + attribute] = item[attribute];
-  //         params["ExpressionAttributeNames"]["#" + attribute] = attribute;
-  //         prefix = ", ";
-  //     }
-  // }
-
-  // return await documentClient.update(params).promise();
-
-  // Save
-  const params = {
-    TableName: process.env.db,
-    Key: {
-      "hk": items.id,
-      "sk": "item",
-      "sk2": "item"
-    },
-    ConditionExpression: "hk = :hk && sk = :sk && sk2 = :sk2",
-    UpdateExpression: "set name = :name, set type = :type, set active = :active, set order = :order, set price = :price, set description = :description, set updatedAt = :updatedAt",
-    ExpressionAttributeValues: {
-      ":name":item.name,
-      ":type":item.type,
-      ":active":item.active,
-      ":order":item.order,
-      ":price":item.price,
-      ":description":item.description,
-      ":updatedAt":Date.now(),
-      ":sk":"item",
-      ":sk2":"item",
-      ":hk":item.id
-    },
-    ReturnValues: "UPDATED_NEW"
-  }
-
-  await dynamodb.update(params).promise()
 }
 
 /**
@@ -238,8 +164,7 @@ const convertToPublicFormat = (item = {}) => {
 }
 
 module.exports = {
-  create,
-  update,
+  put,
   remove,
   getById,
   getAll,
