@@ -113,8 +113,7 @@ const getById = async(id) => {
   const params = {
     TableName: process.env.db,
     IndexName: process.env.dbIndex1,
-    KeyConditionExpression: 'hk = :hk and sk = :sk and sk2 = :sk2',
-    FilterExpression: "foo",
+    FilterExpression: 'hk = :hk and sk = :sk and sk2 = :sk2',
     ExpressionAttributeValues: { ':hk': id, ':sk': 'item', ':sk2': 'item' }
   }
   let item = await dynamodb.scan(params).promise()
