@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {
-  Link,
   withRouter,
 } from 'react-router-dom'
 import Loading from '../../fragments/Loading'
@@ -11,6 +10,7 @@ import {
   userGet,
   saveSession,
 } from '../../utils'
+import tulipShopTavernLogo from '../../assets/tulipshoptavern_logo.svg';
 
 class Auth extends Component {
 
@@ -120,7 +120,7 @@ class Auth extends Component {
     user = user.user
     saveSession(user.id, user.email, token.token)
 
-    window.location.replace('/')
+    window.location.replace('/admin')
   }
 
   render() {
@@ -131,13 +131,9 @@ class Auth extends Component {
 
           { /* Logo */}
 
-          <Link to='/' className={`${styles.logo}`}>
-            <img
-              draggable='false'
-              src={'./fullstack-app-title.png'}
-              alt='serverless-fullstack-application'
-            />
-          </Link>
+          <div className={'tulip_logo_wrapper'}>
+              <img src={tulipShopTavernLogo} alt={'Tulip Shop Tavern'} className={'tulip_logo'}/>
+          </div>
 
           { /* Loading */}
 
@@ -149,7 +145,7 @@ class Auth extends Component {
 
           { /* Registration Form */}
 
-          {!this.state.loading && (
+          {/* {!this.state.loading && (
             <div className={styles.formType}>
               <div
                 className={
@@ -166,7 +162,7 @@ class Auth extends Component {
                 Sign-In
               </div>
             </div>
-          )}
+          )} */}
 
           {this.state.state === 'register' && !this.state.loading && (
             <div className={styles.containerRegister}>

@@ -18,6 +18,9 @@ function Menu() {
                     <div className={'tulip_logo_wrapper'}>
                         <img src={tulipShopTavernLogo} alt={'Tulip Shop Tavern'} className={'tulip_logo'}/>
                     </div>
+                    <div className={'call_out'}>
+                        <span>Now offering cocktails to-go. Please ask your server or bartender for details.</span>
+                    </div>
                     <div className={'media_links'}>
                         <span>Open noon-10pm everyday</span>
                         <br/>
@@ -86,7 +89,7 @@ function Menu() {
                         </div>
                         <div className={'menu_item_description'}>
                             {
-                                addons.sort(d => d.order).map((data, index) => {
+                                addons.sort((x, y) => x.order - y.order).map((data, index) => {
                                     return (
                                         <span key={data.id}>
                                             { data.name} <span className={'menu_item_bold'}>${data.price} </span>
@@ -100,7 +103,7 @@ function Menu() {
                         <div className={'menu_spacer'}/>
 
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "sandwich").sort(d => d.order).map((data) => {
+                            data.returnItems.filter(d => d.active === 1 && d.type === "sandwich").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
@@ -122,7 +125,7 @@ function Menu() {
                         <div className={'menu_spacer'}/>
 
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "salad").sort(d => d.order).map((data) => {
+                            data.returnItems.filter(d => d.active === 1 && d.type === "salad").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
@@ -144,7 +147,7 @@ function Menu() {
                         <div className={'menu_spacer'}/>
                         
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "side").sort(d => d.order).map((data) => {
+                            data.returnItems.filter(d => d.active === 1 && d.type === "side").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
@@ -165,7 +168,7 @@ function Menu() {
                             (First sauce free, each additional sauce $.50)<br/>
 
                             {
-                                data.returnItems.filter(d => d.active === 1 && d.type === "sauce").sort(d => d.order).map((data) => {
+                                data.returnItems.filter(d => d.active === 1 && d.type === "sauce").sort((x, y) => x.order - y.order).map((data) => {
                                     return (
                                         <div key={data.id}>
                                             <div className={'sauces'}>
@@ -184,7 +187,7 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "house-drink").sort(d => d.order).map((data) => {
+                            data.returnItems.filter(d => d.active === 1 && d.type === "house-drink").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
@@ -204,7 +207,7 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "classic-drink").sort(d => d.order).map((data) => {
+                            data.returnItems.filter(d => d.active === 1 && d.type === "classic-drink").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
@@ -224,7 +227,7 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "hot-drink").sort(d => d.order).map((data) => {
+                            data.returnItems.filter(d => d.active === 1 && d.type === "hot-drink").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
@@ -245,7 +248,7 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "wine").sort(d => d.order).map((data) => {
+                            data.returnItems.filter(d => d.active === 1 && d.type === "wine").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
@@ -263,7 +266,7 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "draft").sort(d => d.order).map((data) => {
+                            data.returnItems.filter(d => d.active === 1 && d.type === "draft").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
@@ -281,7 +284,7 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "tallboy").sort(d => d.order).map((data) => {
+                            data.returnItems.filter(d => d.active === 1 && d.type === "tallboy").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
@@ -300,7 +303,7 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "cider").sort(d => d.order).map((data) => {
+                            data.returnItems.filter(d => d.active === 1 && d.type === "cider").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>

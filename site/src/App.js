@@ -18,9 +18,9 @@ function App() {
                     <Route path="/admin">
                         <Admin />
                     </Route>
-                    <Route path='/register'>
+                    {/* <Route path='/register'>
                         <Auth />
-                    </Route>
+                    </Route> */}
                     <Route path='/login'>
                         <Auth />
                     </Route>
