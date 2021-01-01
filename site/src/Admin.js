@@ -1,29 +1,14 @@
 import React, { useState } from "react";
-import Overlay from "react-overlay-component";
 import { useFetch } from "./hooks";
 import './App.css';
-import { Controller, useForm } from "react-hook-form";
 import { useCookies } from 'react-cookie';
 import axios from 'axios'
 import config from './config';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import SearchOverlay from "./utils/SearchOverlay";
 
 const url = `${config.domains.api}`;
 const grid = 8;
-const types = [
-    { value: "draft", label: "Draft" },
-    { value: "tallboy", label: "Tallboy" },
-    { value: "cider", label: "Cider" },
-    { value: "wine", label: "Wine" },
-    { value: "sandwich", label: "Sandwich" },
-    { value: "addon", label: "Add-On" },
-    { value: "side", label: "Side" },
-    { value: "salad", label: "Salad" },
-    { value: "sauce", label: "Sauce" },
-    { value: "house-drink", label: "House Drink" },
-    { value: "classic-drink", label: "Classic Drink" },
-    { value: "hot-drink", label: "Hot Drink" }
-  ];
 
 const getItemStyle = (isDragging, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
@@ -45,16 +30,12 @@ const getListStyle = isDraggingOver => ({
 });
 
 function MenuList({items}) {
-    const { control, handleSubmit } = useForm();
     const [cookies] = useCookies(['serverless']);
     axios.defaults.headers.common['Authorization'] = `Bearer ${cookies?.serverless?.userToken}`;
     axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
     axios.defaults.headers.common['Content-Type'] = 'application/json';
-    const [expand, setExpand] = useState(false);
-    const [itemToUpdate, setItemToUpdate] = useState({});
-    const [isOpen, setOverlay] = useState(false);
-    const closeOverlay = () => setOverlay(false);
-    const configs = {};
+    const [modalVisible, setModalVisible] = useState(false);
+    const [itemToUpdate, setItemToUpdate] = useState();
     const reorder = (list, startIndex, endIndex) => {
         const result = Array.from(list);
         const [removed] = result.splice(startIndex, 1);
@@ -66,12 +47,10 @@ function MenuList({items}) {
         const apiUrl = `${url}/items/update/many`;
         axios.post(apiUrl, {data: result}).then((response) => {
             console.log("reorder response", response);
-            window.location.replace('/admin');
         });
         return result;
     };
     const onDragEnd = (result) => {
-        // dropped outside the list
         if (!result.destination) {
             return;
         }
@@ -81,26 +60,10 @@ function MenuList({items}) {
             result.source.index,
             result.destination.index
         );
-    
-        // setState({
-        //     items
-        // });
     }
-    const onSelectForUpdate = (item) => {
-        console.log(item);
+    const onSelectForUpdate = async (item) => {
         setItemToUpdate(item);
-        console.log(itemToUpdate);
-        setOverlay(true);
     }
-    const onSubmit = (d, e) => {
-        console.log("submit", d, e);
-        const apiUrl = `${url}/items/update`;
-        axios.post(apiUrl, d).then((response) => {
-            console.log("create response", response);
-            window.location.replace('/admin');
-        });
-    }
-    const onError = (errors, e) => console.log("error", errors, e);
     return (
         <div>
             <DragDropContext onDragEnd={onDragEnd}>
@@ -124,7 +87,7 @@ function MenuList({items}) {
                                     provided.draggableProps.style
                                 )}
                                 onClick={() => {
-                                    onSelectForUpdate(item)
+                                    onSelectForUpdate(item).then(() => setModalVisible(true))
                                 }}
                             >
                                 {item.name}
@@ -137,101 +100,25 @@ function MenuList({items}) {
                 )}
                 </Droppable>
             </DragDropContext>
-            <Overlay configs={configs} isOpen={isOpen} closeOverlay={closeOverlay}>
-                <div className={'update-form-wrapper'}>
-                    <form>
-                        <Controller
-                            as={<input />}
-                            name={`itemToUpdate.name`}
-                            defaultValue={itemToUpdate?.name}
-                            control={control}
-                        />
-                        <br/>
-                        <Controller
-                            as={<input />}
-                            name={`itemToUpdate.description`}
-                            defaultValue={itemToUpdate?.description}
-                            control={control}
-                        />
-                        <br/>
-                        <Controller
-                            as={<input />}
-                            name={`itemToUpdate.price`}
-                            defaultValue={itemToUpdate?.price}
-                            control={control}
-                            type={'number'}
-                        />
-                        <br/>
-                        <Controller
-                            as={<input />}
-                            name={`itemToUpdate.order`}
-                            defaultValue={itemToUpdate?.order}
-                            control={control}
-                            type={'number'}
-                        />
-                        <br/>
-                        <Controller
-                            as={
-                                <select style={{ width: 200 }} className={"dropdown"}>
-                                    {types.map(d => {
-                                        return (
-                                        <option key={d.value} value={d.value}>
-                                            {d.label}
-                                        </option>
-                                        );
-                                    })}
-                                </select>
-                            }
-                            placeholder="Type"
-                            name="itemToUpdate.type"
-                            defaultValue={itemToUpdate?.type}
-                            options={types}
-                            onChange={([e]) => {
-                                itemToUpdate.type = e;
-                                return { value: e };
-                            }}
-                            control={control}
-                        />
-                        <br/>
-                        <Controller
-                            as={<input />}
-                            name={`active`}
-                            defaultValue={1}
-                            control={control}
-                            type={'number'}
-                            className="data-only-element"
-                        />
-                        <br/>
-                        <button type='button' onClick={() => onSubmit(itemToUpdate)} className={"tst-button"}>update</button>
-                    </form>  
-                </div>
-            </Overlay>
+            <SearchOverlay
+                modalVisible={modalVisible}
+                item={itemToUpdate}
+                setModalVisible={setModalVisible}
+            />
         </div>
     );
 }
 
 function Admin() {
     let [data, loading] = useFetch(`${url}/items`);
-    const { control, handleSubmit } = useForm();
     const [cookies] = useCookies(['serverless']);
-    const [isAddOpen, setAddOverlay] = useState(false);
-    const closeAddOverlay = () => setAddOverlay(false);
-    const configs = {};
-    let newItem = {"name": "", "description": "", "price": 0, "order": 0, "active": 1, "type": "draft"};
+    const [modalVisible, setModalVisible] = useState();
+    const itemToAdd = {name: "", description: "", type: "draft", price: 0, order: 0 };
     axios.defaults.headers.common['Authorization'] = `Bearer ${cookies?.serverless?.userToken}`;
     axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
     axios.defaults.headers.common['Content-Type'] = 'application/json';
-    const onSubmit = (d, e) => {
-        console.log("submit", d, e);
-        const apiUrl = `${url}/items/create`;
-        axios.post(apiUrl, d.newItem).then((response) => {
-            console.log("create response", response);
-            window.location.replace('/admin');
-        });
-    }
-    const onError = (errors, e) => console.log("error", errors, e);
     const addNewItem = () => {
-        setAddOverlay(true);
+        setModalVisible(true);
     }
     if (!cookies?.serverless?.userToken) {
         window.location.replace('/login');
@@ -385,75 +272,11 @@ function Admin() {
                 </div>
             </div>
             )}
-            <Overlay configs={configs} isOpen={isAddOpen} closeOverlay={closeAddOverlay}>
-                <div className={'update-form-wrapper'}>
-                    <form onSubmit={handleSubmit(onSubmit, onError)}>
-                        <Controller
-                            as={<input />}
-                            name={`newItem.name`}
-                            placeholder={'Title'}
-                            defaultValue={newItem.name}
-                            control={control}
-                        />
-                        <br/>
-                        <Controller
-                            as={<input />}
-                            name={`newItem.description`}
-                            placeholder={'Description'}
-                            defaultValue={newItem.description}
-                            control={control}
-                        />
-                        <br/>
-                        <Controller
-                            as={<input />}
-                            name={`newItem.price`}
-                            defaultValue={newItem.price}
-                            control={control}
-                            type={'number'}
-                        />
-                        <br/>
-                        <Controller
-                            as={<input />}
-                            name={`newItem.order`}
-                            defaultValue={newItem.order}
-                            control={control}
-                            type={'number'}
-                        />
-                        <br/>
-                        <Controller
-                            as={
-                                <select style={{ width: 200 }} className={"dropdown"}>
-                                    {types.map(d => {
-                                        return (
-                                        <option key={d.value} value={d.value}>
-                                            {d.label}
-                                        </option>
-                                        );
-                                    })}
-                                </select>
-                            }
-                            placeholder="Type"
-                            name="newItem.type"
-                            defaultValue={newItem.type}
-                            options={types}
-                            onChange={([e]) => {
-                                newItem.type = e;
-                                return { value: e };
-                            }}
-                            control={control}
-                        />
-                        <br/>
-                        <Controller
-                            as={<input />}
-                            name={`active`}
-                            defaultValue={1}
-                            control={control}
-                            className="data-only-element"
-                        />
-                        <button type='submit' className={"tst-button"}>add</button>
-                    </form>  
-                </div>
-            </Overlay>
+            <SearchOverlay
+                modalVisible={modalVisible}
+                setModalVisible={setModalVisible}
+                item={itemToAdd}
+            />
         </>
     );
 }

@@ -317,6 +317,8 @@ a:-webkit-any-link {
 form {
   margin: 0 auto;
   height: 40px !important;
+  width: fit-content;
+
 }
 
 .form {
@@ -429,4 +431,63 @@ input[type="submit"] {
 .update-form-wrapper {
   width: 100vw;
   height: 100vh;
+  position: absolute;
+  top: 0;
+  margin: 0;
+  left: 0;
+  align-items: center;
+  align-content: center;
+  flex: auto;
+  background: darkgrey;
+  padding: 75px 0;
+  text-align: center;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #2d2e33;
+  padding: 10px 30px;
+  border-radius: 2.5rem;
+  margin-top: 30px;
+  height: 60px;
+  width: 30rem;
+}
+
+.search-input {
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  color: #fff;
+  min-width: 90%;
+  background: none;
+  font-size: 24px;
+}
+
+.extra-info {
+  font-size: 12px;
+  float: right;
+  margin: 5px 25px 0px 0px;
+  color: #cecece;
+}
+
+.modal {
+  background-color: "transparent";
+  display: "flex";
+  overflow: "none";
+  width: "100%";
+  padding: "0";
+  margin: "0";
+  height: "100%";
+  min-width: "100%";
+  justify-content: "center";
+  z-index: 50000;
+}
+.overlay {
+  background-color: "#1cccc";
+  padding: 0;
+}
+.closeIcon {
+  fill: "#fff"
 }
