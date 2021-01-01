@@ -63,6 +63,16 @@
     height: 430px !important;
   }
 
+  .tst-button {
+    background: #d7b73f;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+    font-size: 16px;
+    font-weight: 100;
+    letter-spacing: 3px;
+    cursor: pointer;
+  }
 }
 
 .tulip_black_border {
@@ -410,4 +420,13 @@ input[type="submit"] {
 
 .data-only-element {
   display: none;
+}
+
+.tst-droppable {
+  margin: auto !important;
+}
+
+.update-form-wrapper {
+  width: 100vw;
+  height: 100vh;
 }

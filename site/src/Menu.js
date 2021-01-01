@@ -3,10 +3,13 @@ import { useFetch } from "./hooks";
 import tulipShopTavernLogo from './assets/tulipshoptavern_logo.svg';
 import instagram from './assets/instagram-white-icon.svg';
 import mail from './assets/email-white-icon.svg';
+import config from './config';
+
+const url = `${config.domains.api}`;
 
 function Menu() {
-    const [data, loading] = useFetch("https://giner2vf60.execute-api.us-east-1.amazonaws.com/items");
-    const addons = data?.returnItems.filter(d => d.type === "addon" && d.active === 1).sort(d => d.order);
+    const [data, loading] = useFetch(`${url}/items`);
+    const addons = data?.returnItems.filter(d => d.type === "addon").sort(d => d.order);
     return (
         <>
             {loading ? (
@@ -103,14 +106,14 @@ function Menu() {
                         <div className={'menu_spacer'}/>
 
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "sandwich").sort((x, y) => x.order - y.order).map((data) => {
+                            data.returnItems.filter(d => d.type === "sandwich").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
                                             {data.name} ${data.price}
                                         </div>
                                         <div className={'menu_item_description'}>
-                                            {data.description}
+                                            <div dangerouslySetInnerHTML={{ __html: data.description }} />
                                         </div>
                                     </div>
                                 )
@@ -125,14 +128,14 @@ function Menu() {
                         <div className={'menu_spacer'}/>
 
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "salad").sort((x, y) => x.order - y.order).map((data) => {
+                            data.returnItems.filter(d => d.type === "salad").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
                                             {data.name} ${data.price}
                                         </div>
                                         <div className={'menu_item_description'}>
-                                            {data.description}
+                                            <div dangerouslySetInnerHTML={{ __html: data.description }} />
                                         </div>
                                     </div>
                                 )
@@ -147,14 +150,14 @@ function Menu() {
                         <div className={'menu_spacer'}/>
                         
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "side").sort((x, y) => x.order - y.order).map((data) => {
+                            data.returnItems.filter(d => d.type === "side").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
                                             {data.name} ${data.price}
                                         </div>
                                         <div className={'menu_item_description'}>
-                                            {data.description}
+                                            <div dangerouslySetInnerHTML={{ __html: data.description }} />
                                         </div>
                                     </div>
                                 )
@@ -168,7 +171,7 @@ function Menu() {
                             (First sauce free, each additional sauce $.50)<br/>
 
                             {
-                                data.returnItems.filter(d => d.active === 1 && d.type === "sauce").sort((x, y) => x.order - y.order).map((data) => {
+                                data.returnItems.filter(d => d.type === "sauce").sort((x, y) => x.order - y.order).map((data) => {
                                     return (
                                         <div key={data.id}>
                                             <div className={'sauces'}>
@@ -187,14 +190,14 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "house-drink").sort((x, y) => x.order - y.order).map((data) => {
+                            data.returnItems.filter(d => d.type === "house-drink").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
                                             {data.name} ${data.price}
                                         </div>
                                         <div className={'menu_item_description'}>
-                                            {data.description}
+                                            <div dangerouslySetInnerHTML={{ __html: data.description }} />
                                         </div>
                                     </div>
                                 )
@@ -207,14 +210,14 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "classic-drink").sort((x, y) => x.order - y.order).map((data) => {
+                            data.returnItems.filter(d => d.type === "classic-drink").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
                                             {data.name} ${data.price}
                                         </div>
                                         <div className={'menu_item_description'}>
-                                            {data.description}
+                                            <div dangerouslySetInnerHTML={{ __html: data.description }} />
                                         </div>
                                     </div>
                                 )
@@ -227,14 +230,14 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "hot-drink").sort((x, y) => x.order - y.order).map((data) => {
+                            data.returnItems.filter(d => d.type === "hot-drink").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
                                             {data.name} ${data.price}
                                         </div>
                                         <div className={'menu_item_description'}>
-                                            {data.description}
+                                            <div dangerouslySetInnerHTML={{ __html: data.description }} />
                                         </div>
                                     </div>
                                 )
@@ -248,7 +251,7 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "wine").sort((x, y) => x.order - y.order).map((data) => {
+                            data.returnItems.filter(d => d.type === "wine").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
@@ -266,7 +269,7 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "draft").sort((x, y) => x.order - y.order).map((data) => {
+                            data.returnItems.filter(d => d.type === "draft").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
@@ -284,7 +287,7 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "tallboy").sort((x, y) => x.order - y.order).map((data) => {
+                            data.returnItems.filter(d => d.type === "tallboy").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>
@@ -303,7 +306,7 @@ function Menu() {
                         </div>
                         <div className={'menu_spacer'}/>
                         {
-                            data.returnItems.filter(d => d.active === 1 && d.type === "cider").sort((x, y) => x.order - y.order).map((data) => {
+                            data.returnItems.filter(d => d.type === "cider").sort((x, y) => x.order - y.order).map((data) => {
                                 return (
                                     <div key={data.id}>
                                         <div className={'menu_sub_section_header'}>

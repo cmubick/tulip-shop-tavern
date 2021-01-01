@@ -60,6 +60,25 @@ const update = async (req, res, next) => {
 }
 
 /**
+ * Update Many
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next
+ */
+const updateMany = async (req, res, next) => {
+
+  await req.body.data.forEach(async (element) => {
+    try {
+      await update(element)
+    } catch (error) {
+      console.log(`{ error: ${error.message}`)
+    }
+  });
+
+  res.json({ message: 'create items successful' })
+}
+
+/**
  * Get an item
  * @param {*} req 
  * @param {*} res 
@@ -111,6 +130,7 @@ module.exports = {
   create,
   createMany,
   update,
+  updateMany,
   get,
   getAll,
   remove
