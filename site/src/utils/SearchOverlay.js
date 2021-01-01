@@ -94,91 +94,93 @@ const SearchOverlay = props => {
           <div className={'extra-info'}>Click ESC or click outside input.</div>
           <div className={'update-form-wrapper'}>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <span>TITLE</span>
+              <span className={'form-label'}>TITLE</span>
+              <div className={'menu_spacer_small'}/>
+              <Controller
+                  as={<input />}
+                  name={`item.name`}
+                  defaultValue={item.name}
+                  control={control}
+              />
               <br/>
-                <Controller
-                    as={<input />}
-                    name={`item.name`}
-                    defaultValue={item.name}
-                    control={control}
-                />
-                <br/>
-              <span>DESCRIPTION</span>
+              <div className={'menu_spacer_small'}/>
+              <span className={'form-label'}>DESCRIPTION</span>
+              <div className={'menu_spacer_small'}/>
+              <Controller
+                  as={<input />}
+                  name={`item.description`}
+                  defaultValue={item.description}
+                  control={control}
+              />
               <br/>
-                <Controller
-                    as={<input />}
-                    name={`item.description`}
-                    defaultValue={item.description}
-                    control={control}
-                />
-                <br/>
-              <span>PRICE</span>
+              <div className={'menu_spacer_small'}/>
+              <span className={'form-label'}>PRICE</span>
+              <div className={'menu_spacer_small'}/>
+              <Controller
+                  as={<input />}
+                  name={`item.price`}
+                  defaultValue={item.price}
+                  control={control}
+                  type={'number'}
+              />
               <br/>
-                <Controller
-                    as={<input />}
-                    name={`item.price`}
-                    defaultValue={item.price}
-                    control={control}
-                    type={'number'}
-                />
-                <br/>
-                <Controller
-                    as={<input />}
-                    name={`item.order`}
-                    defaultValue={item.order}
-                    control={control}
-                    type={'number'}
-                    className="data-only-element"
-                />
-                <br/>
-              <span>TYPE</span>
+              <Controller
+                  as={<input />}
+                  name={`item.order`}
+                  defaultValue={item.order}
+                  control={control}
+                  type={'number'}
+                  className="data-only-element"
+              />
               <br/>
-                <Controller
-                    as={
-                        <select style={{ width: 200 }} className={"dropdown"}>
-                            {types.map(d => {
-                                return (
-                                <option key={d.value} value={d.value}>
-                                    {d.label}
-                                </option>
-                                );
-                            })}
-                        </select>
-                    }
-                    placeholder="Type"
-                    name="item.type"
-                    defaultValue={item.type}
-                    options={types}
-                    onChange={([e]) => {
-                        item.type = e;
-                        return { value: e };
-                    }}
-                    control={control}
-                />
-                <br/>
-                <Controller
-                    as={<input />}
-                    name={`active`}
-                    defaultValue={1}
-                    control={control}
-                    type={'number'}
-                    className="data-only-element"
-                />
-                <br/>
-                <Controller
-                    as={<input />}
-                    name={`id`}
-                    defaultValue={item.id ? item.id : ""}
-                    control={control}
-                    type={'number'}
-                    className="data-only-element"
-                />
-                <br/>
-                <button type='submit' className={"tst-button"}>{item.id ? 'update' : 'add'}</button>
-                {item.id ? <div>
-                  <button type='button' onClick={() => onRemove(item.id)} className={"tst-button"}>delete</button>
-                </div> : <div></div>}
-                <button type='button' onClick={() => onCancel()} className={"tst-button"}>cancel</button>
+              <span className={'form-label'}>TYPE</span>
+              <div className={'menu_spacer_small'}/>
+              <Controller
+                  as={
+                      <select style={{ width: 200 }} className={"dropdown"}>
+                          {types.map(d => {
+                              return (
+                              <option key={d.value} value={d.value}>
+                                  {d.label}
+                              </option>
+                              );
+                          })}
+                      </select>
+                  }
+                  placeholder="Type"
+                  name="item.type"
+                  defaultValue={item.type}
+                  options={types}
+                  onChange={([e]) => {
+                      item.type = e;
+                      return { value: e };
+                  }}
+                  control={control}
+              />
+              <br/>
+              <Controller
+                  as={<input />}
+                  name={`active`}
+                  defaultValue={1}
+                  control={control}
+                  type={'number'}
+                  className="data-only-element"
+              />
+              <br/>
+              <Controller
+                  as={<input />}
+                  name={`id`}
+                  defaultValue={item.id ? item.id : ""}
+                  control={control}
+                  type={'number'}
+                  className="data-only-element"
+              />
+              <br/>
+              <button type='submit' className={"tst-button"}>{item.id ? 'update' : 'add'}</button>
+              {item.id ? <div>
+                <button type='button' onClick={() => onRemove(item.id)} className={"tst-button"}>delete</button>
+              </div> : <div></div>}
+              <button type='button' onClick={() => onCancel()} className={"tst-button"}>cancel</button>
             </form>  
         </div>
         </ResponsiveModal>

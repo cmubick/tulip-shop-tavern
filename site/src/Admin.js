@@ -17,14 +17,14 @@ const getItemStyle = (isDragging, draggableStyle) => ({
     margin: `0 0 ${grid}px 0`,
 
     // change background colour if dragging
-    background: isDragging ? "#d7b73f" : "grey",
+    background: isDragging ? "#d7b73f" : "lightgrey",
 
     // styles we need to apply on draggables
     ...draggableStyle
 });
 
 const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? "black" : "lightgrey",
+    background: isDraggingOver ? "black" : "grey",
     padding: grid,
     width: 250
 });
@@ -64,6 +64,13 @@ function MenuList({items}) {
     const onSelectForUpdate = async (item) => {
         setItemToUpdate(item);
     }
+    const showDescription = (t) => {
+        if (t === 'beer' || t === 'cider' || t === 'wine' || t === 'tallboy') {
+            return true;
+        } else {
+            return false;
+        }
+    }
     return (
         <div>
             <DragDropContext onDragEnd={onDragEnd}>
@@ -90,7 +97,8 @@ function MenuList({items}) {
                                     onSelectForUpdate(item).then(() => setModalVisible(true))
                                 }}
                             >
-                                {item.name}
+                                <span className={'reorder-name'}>{item.name}</span>
+                                {showDescription(item.type) ? <div>{item.description}</div> : <div></div>}
                             </div>
                         )}
                         </Draggable>

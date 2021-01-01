@@ -52,6 +52,10 @@
     height: 24px !important;
   }
 
+  .menu_spacer_small {
+    height: 4px;
+  }
+
   .image_wrapper {
     display: flex;
     justify-content: center;
@@ -407,11 +411,11 @@ input[type="submit"] {
 }
 
 .dropdown {
-  width: 200px;
   border: 1px solid #d7b73f;
   padding: 9px;
-  width: 128px !important;
+  width: 176px !important;
   border-radius: 4px;
+  background: white;
 }
 
 .header {
@@ -430,7 +434,8 @@ input[type="submit"] {
 
 .update-form-wrapper {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 150px);
+  overflow-y: auto;
   position: absolute;
   top: 0;
   margin: 0;
@@ -490,4 +495,12 @@ input[type="submit"] {
 }
 .closeIcon {
   fill: "#fff"
+}
+
+.form-label {
+  font-weight: 700;
+}
+
+.reorder-name {
+  font-weight: 700;
 }
