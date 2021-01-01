@@ -69,7 +69,13 @@ const updateMany = async (req, res, next) => {
 
   await req.body.data.forEach(async (element) => {
     try {
-      await update(element)
+      let item = await items.getById(element.id)
+
+      if (!item) {
+        return res.status(404).send({ error: 'Update failed. Item not found.' })
+      }
+      
+      await items.put(element)
     } catch (error) {
       console.log(`{ error: ${error.message}`)
     }
