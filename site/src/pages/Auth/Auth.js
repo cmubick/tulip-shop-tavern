@@ -11,6 +11,7 @@ import {
   saveSession,
 } from '../../utils'
 import tulipShopTavernLogo from '../../assets/tulipshoptavern_logo.svg';
+import '../../App.css';
 
 class Auth extends Component {
 
@@ -194,7 +195,7 @@ class Auth extends Component {
                 )}
 
                 <input
-                  className={`buttonPrimaryLarge ${styles.formButton}`}
+                  className={`buttonPrimaryLarge tst-button ${styles.formButton}`}
                   type='submit'
                   value='Register'
                 />
@@ -213,7 +214,7 @@ class Auth extends Component {
                     type='text'
                     placeholder='yours@example.com'
                     className={styles.formInput}
-                    value={this.state.formEmail}
+                    value={this.state.formEmail.toLowerCase()}
                     onChange={(e) => { this.handleFormInput('formEmail', e.target.value) }}
                   />
                 </div>
@@ -232,7 +233,7 @@ class Auth extends Component {
                   <div className={styles.formError}>{this.state.formError}</div>
                 )}
 
-                <input className={`buttonPrimaryLarge ${styles.formButton}`} type='submit' value='Sign In' />
+                <input className={`buttonPrimaryLarge tst-button ${styles.formButton}`} type='submit' value='Sign In' />
               </form>
             </div>
           )}
