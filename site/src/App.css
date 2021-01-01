@@ -504,3 +504,10 @@ input[type="submit"] {
 .reorder-name {
   font-weight: 700;
 }
+
+.formLabel {
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: black;
+}
