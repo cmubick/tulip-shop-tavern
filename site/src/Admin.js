@@ -64,7 +64,7 @@ function MenuList({items}) {
         });
         console.log(result);
         const apiUrl = `${url}/items/update/many`;
-        axios.post(apiUrl, result).then((response) => {
+        axios.post(apiUrl, {data: result}).then((response) => {
             console.log("reorder response", response);
             window.location.replace('/admin');
         });
