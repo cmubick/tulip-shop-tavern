@@ -25,7 +25,7 @@ function Menu() {
                         <span>Now offering cocktails to-go. Please ask your server or bartender for details.</span>
                     </div>
                     <div className={'media_links'}>
-                        <span>Open noon-10pm everyday</span>
+                        <span>Open noon-11pm everyday</span>
                         <br/>
                         <span>Please call ahead for to-go orders</span>
                         <br/>
