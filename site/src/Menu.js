@@ -223,26 +223,26 @@ function Menu() {
                                 )
                             })
                         }
-                        <div className={'menu_spacer'}/>
-                        <div className={'menu_spacer'}/>
-                        <div className={'menu_header'}>
-                            HOT DRINKS
-                        </div>
-                        <div className={'menu_spacer'}/>
-                        {
-                            data.returnItems.filter(d => d.type === "hot-drink").sort((x, y) => x.order - y.order).map((data) => {
-                                return (
-                                    <div key={data.id}>
-                                        <div className={'menu_sub_section_header'}>
-                                            {data.name} ${data.price}
-                                        </div>
-                                        <div className={'menu_item_description'}>
-                                            <div dangerouslySetInnerHTML={{ __html: data.description }} />
-                                        </div>
-                                    </div>
-                                )
-                            })
-                        }
+                        {/*<div className={'menu_spacer'}/>*/}
+                        {/*<div className={'menu_spacer'}/>*/}
+                        {/*<div className={'menu_header'}>*/}
+                        {/*    HOT DRINKS*/}
+                        {/*</div>*/}
+                        {/*<div className={'menu_spacer'}/>*/}
+                        {/*{*/}
+                        {/*    data.returnItems.filter(d => d.type === "hot-drink").sort((x, y) => x.order - y.order).map((data) => {*/}
+                        {/*        return (*/}
+                        {/*            <div key={data.id}>*/}
+                        {/*                <div className={'menu_sub_section_header'}>*/}
+                        {/*                    {data.name} ${data.price}*/}
+                        {/*                </div>*/}
+                        {/*                <div className={'menu_item_description'}>*/}
+                        {/*                    <div dangerouslySetInnerHTML={{ __html: data.description }} />*/}
+                        {/*                </div>*/}
+                        {/*            </div>*/}
+                        {/*        )*/}
+                        {/*    })*/}
+                        {/*}*/}
 
                         <div className={'menu_spacer'}/>
                         <div className={'menu_spacer'}/>
